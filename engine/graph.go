@@ -37,6 +37,20 @@ func (this *Graph) AddEdge(srcKey, destKey string) {
 	this.Vertices[srcKey].Edges[destKey] = &Edge{Vertex: this.Vertices[destKey]}
 }
 
+func (this *Graph) AddEdges(srcKey string, destKeys []string) {
+	if _, ok := this.Vertices[srcKey]; !ok {
+		return
+	}
+
+	for _, destKey := range destKeys {
+		if _, ok := this.Vertices[destKey]; !ok {
+			return
+		}
+
+		this.Vertices[srcKey].Edges[destKey] = &Edge{Vertex: this.Vertices[destKey]}
+	}
+}
+
 func (this *Graph) GetNeighbors(srcKey string) []string {
 	result := []string{}
 

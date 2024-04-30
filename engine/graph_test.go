@@ -43,6 +43,35 @@ func TestGraphAddEdgeToMissingVertex(t *testing.T) {
 	assert.Nil(g.Vertices["ABC"].Edges["DEF"])
 }
 
+func TestGraphAddEdgesToExistingVertices(t *testing.T) {
+	assert := assert.New(t)
+
+	g := &Graph{Vertices: map[string]*Vertex{}}
+
+	g.AddVertex("ABC", "Test", WaterTile)
+	g.AddVertex("DEF", "Another one", LandTile)
+	g.AddEdges("ABC", []string{"DEF", "GHI", "JKL"})
+
+	assert.NotNil(g.Vertices["ABC"])
+	assert.NotNil(g.Vertices["DEF"])
+	assert.NotNil(g.Vertices["ABC"].Edges["DEF"])
+	assert.NotNil(g.Vertices["ABC"].Edges["GHI"])
+}
+
+func TestGraphAddEdgesToMissingVertex(t *testing.T) {
+	assert := assert.New(t)
+
+	g := &Graph{Vertices: map[string]*Vertex{}}
+
+	g.AddVertex("ABC", "Test", WaterTile)
+	g.AddEdges("ABC", []string{"DEF", "GHI"})
+
+	assert.NotNil(g.Vertices["ABC"])
+	assert.Nil(g.Vertices["DEF"])
+	assert.Nil(g.Vertices["ABC"].Edges["DEF"])
+	assert.Nil(g.Vertices["ABC"].Edges["GHI"])
+}
+
 func TestGetNeighbors(t *testing.T) {
 	assert := assert.New(t)
 

@@ -50,7 +50,8 @@ func TestGraphAddEdgesToExistingVertices(t *testing.T) {
 
 	g.AddVertex("ABC", "Test", WaterTile)
 	g.AddVertex("DEF", "Another one", LandTile)
-	g.AddEdges("ABC", []string{"DEF", "GHI", "JKL"})
+	g.AddVertex("GHI", "Another one", LandTile)
+	g.AddEdges("ABC", []string{"DEF", "GHI"})
 
 	assert.NotNil(g.Vertices["ABC"])
 	assert.NotNil(g.Vertices["DEF"])

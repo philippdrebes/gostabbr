@@ -10,7 +10,7 @@ func TestGraphAddVertex(t *testing.T) {
 
 	g := &Graph{Vertices: map[string]*Vertex{}}
 
-	g.AddVertex("ABC", "Test", WaterTile)
+	g.AddVertex("ABC", "Test", WaterTile, false)
 
 	assert.NotNil(g.Vertices["ABC"])
 	assert.Equal("Test", g.Vertices["ABC"].Name)
@@ -21,8 +21,8 @@ func TestGraphAddEdgeToExistingVertices(t *testing.T) {
 
 	g := &Graph{Vertices: map[string]*Vertex{}}
 
-	g.AddVertex("ABC", "Test", WaterTile)
-	g.AddVertex("DEF", "Another one", LandTile)
+	g.AddVertex("ABC", "Test", WaterTile, false)
+	g.AddVertex("DEF", "Another one", LandTile, false)
 	g.AddEdge("ABC", "DEF")
 
 	assert.NotNil(g.Vertices["ABC"])
@@ -35,7 +35,7 @@ func TestGraphAddEdgeToMissingVertex(t *testing.T) {
 
 	g := &Graph{Vertices: map[string]*Vertex{}}
 
-	g.AddVertex("ABC", "Test", WaterTile)
+	g.AddVertex("ABC", "Test", WaterTile, false)
 	g.AddEdge("ABC", "DEF")
 
 	assert.NotNil(g.Vertices["ABC"])
@@ -48,9 +48,9 @@ func TestGraphAddEdgesToExistingVertices(t *testing.T) {
 
 	g := &Graph{Vertices: map[string]*Vertex{}}
 
-	g.AddVertex("ABC", "Test", WaterTile)
-	g.AddVertex("DEF", "Another one", LandTile)
-	g.AddVertex("GHI", "Another one", LandTile)
+	g.AddVertex("ABC", "Test", WaterTile, false)
+	g.AddVertex("DEF", "Another one", LandTile, false)
+	g.AddVertex("GHI", "Another one", LandTile, false)
 	g.AddEdges("ABC", []string{"DEF", "GHI"})
 
 	assert.NotNil(g.Vertices["ABC"])
@@ -64,7 +64,7 @@ func TestGraphAddEdgesToMissingVertex(t *testing.T) {
 
 	g := &Graph{Vertices: map[string]*Vertex{}}
 
-	g.AddVertex("ABC", "Test", WaterTile)
+	g.AddVertex("ABC", "Test", WaterTile, false)
 	g.AddEdges("ABC", []string{"DEF", "GHI"})
 
 	assert.NotNil(g.Vertices["ABC"])
@@ -78,10 +78,10 @@ func TestGetNeighbors(t *testing.T) {
 
 	g := &Graph{Vertices: map[string]*Vertex{}}
 
-	g.AddVertex("ABC", "Test 1", WaterTile)
-	g.AddVertex("DEF", "Test 2", LandTile)
-	g.AddVertex("GHI", "Test 3", WaterTile)
-	g.AddVertex("JKL", "Test 4", LandTile)
+	g.AddVertex("ABC", "Test 1", WaterTile, false)
+	g.AddVertex("DEF", "Test 2", LandTile, false)
+	g.AddVertex("GHI", "Test 3", WaterTile, false)
+	g.AddVertex("JKL", "Test 4", LandTile, false)
 
 	g.AddEdge("ABC", "DEF")
 	g.AddEdge("ABC", "JKL")

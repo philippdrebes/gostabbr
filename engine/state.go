@@ -4,7 +4,6 @@ import "errors"
 
 type Turn int8
 type Phase int8
-type UnitType int8
 
 const (
 	Spring Turn = iota
@@ -18,14 +17,8 @@ const (
 	Build
 )
 
-const (
-	Army UnitType = iota
-	Fleet
-)
-
 type Country struct {
-	Name  string
-	Units map[string]UnitType
+	Name string
 }
 
 type State struct {

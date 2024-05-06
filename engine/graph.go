@@ -1,10 +1,18 @@
 package engine
 
+import "errors"
+
 type TileType int8
+type UnitType int8
 
 const (
 	LandTile TileType = iota
 	WaterTile
+)
+
+const (
+	Army UnitType = iota
+	Fleet
 )
 
 type Graph struct {
@@ -16,11 +24,18 @@ type Vertex struct {
 	Name           string
 	Type           TileType
 	IsSupplyCenter bool
+	OwnedBy        string
+	Unit           *Unit
 	Edges          map[string]*Edge
 }
 
 type Edge struct {
 	Vertex *Vertex
+}
+
+type Unit struct {
+	Country string
+	Type    UnitType
 }
 
 func (this *Graph) AddVertex(key, name string, tileType TileType, isSupplyCenter bool) {
@@ -36,6 +51,21 @@ func (this *Graph) AddEdge(srcKey, destKey string) {
 	}
 
 	this.Vertices[srcKey].Edges[destKey] = &Edge{Vertex: this.Vertices[destKey]}
+}
+
+func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error {
+	if _, ok := this.Vertices[tile]; !ok {
+		return errors.New("Tile not found")
+	}
+
+	unit := Unit{
+		Country: country,
+		Type:    unitType,
+	}
+
+	this.Vertices[tile].Unit = &unit
+
+	return nil
 }
 
 func (this *Graph) AddEdges(srcKey string, destKeys []string) {

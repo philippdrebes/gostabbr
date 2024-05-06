@@ -92,3 +92,36 @@ func TestGetNeighbors(t *testing.T) {
 	neighbors := g.GetNeighbors("GHI")
 	assert.Equal(2, len(neighbors))
 }
+
+func TestGraphAddUnitToExistingTile(t *testing.T) {
+	assert := assert.New(t)
+
+	g := &Graph{Vertices: map[string]*Vertex{}}
+	country := "test country"
+	utype := Fleet
+
+	g.AddVertex("ABC", "Test", WaterTile, false)
+	assert.NotNil(g.Vertices["ABC"])
+
+	err := g.AddUnit(country, utype, "ABC")
+
+	assert.NoError(err)
+	unit := g.Vertices["ABC"].Unit
+	assert.NotNil(unit)
+	assert.Equal(country, unit.Country)
+	assert.Equal(utype, unit.Type)
+}
+
+func TestGraphAddUnitToMissingTile(t *testing.T) {
+	assert := assert.New(t)
+
+	g := &Graph{Vertices: map[string]*Vertex{}}
+	country := "test country"
+	utype := Fleet
+
+	assert.Nil(g.Vertices["ABC"])
+
+	err := g.AddUnit(country, utype, "ABC")
+
+	assert.Error(err)
+}

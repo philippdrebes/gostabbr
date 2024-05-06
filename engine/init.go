@@ -15,6 +15,7 @@ func InitializeNewGame() *State {
 		},
 		World: initializeWorld(),
 	}
+
 	return game
 }
 
@@ -172,6 +173,35 @@ func initializeWorld() *Graph {
 	g.AddEdges("SKA", []string{"BAL", "Den", "NTH", "Nwy", "Swe"})
 	g.AddEdges("TYS", []string{"ION", "LYO", "Nap", "Rom", "Tun", "Tus", "WES"})
 	g.AddEdges("WES", []string{"LYO", "MAO", "Naf", "TYS", "Tun"})
+
+	g.AddUnit("Austria", Army, "Vie")
+	g.AddUnit("Austria", Army, "Bud")
+	g.AddUnit("Austria", Fleet, "Tri")
+
+	g.AddUnit("England", Fleet, "Lon")
+	g.AddUnit("England", Fleet, "Edi")
+	g.AddUnit("England", Army, "Lvp")
+
+	g.AddUnit("France", Army, "Par")
+	g.AddUnit("France", Army, "Mas")
+	g.AddUnit("France", Fleet, "Bre")
+
+	g.AddUnit("Germany", Army, "Ber")
+	g.AddUnit("Germany", Army, "Mun")
+	g.AddUnit("Germany", Fleet, "Kie")
+
+	g.AddUnit("Italy", Army, "Rom")
+	g.AddUnit("Italy", Army, "Ven")
+	g.AddUnit("Italy", Fleet, "Nap")
+
+	g.AddUnit("Russia", Army, "Mos")
+	g.AddUnit("Russia", Fleet, "Sev")
+	g.AddUnit("Russia", Army, "War")
+	g.AddUnit("Russia", Fleet, "Stp")
+
+	g.AddUnit("Turkey", Fleet, "Ank")
+	g.AddUnit("Turkey", Army, "Con")
+	g.AddUnit("Turkey", Army, "Smy")
 
 	return g
 }

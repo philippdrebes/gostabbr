@@ -14,15 +14,16 @@ func TestVisualizeInitializedWorld(t *testing.T) {
 	assert := assert.New(t)
 	filename := "./world.dot"
 
-	world := InitializeWorld()
+	game := InitializeNewGame()
+	world := game.World
 	g := graph.New(graph.StringHash)
 
 	for srcKey, vertex := range world.Vertices {
-		_ = g.AddVertex(srcKey)
+		addVertex(g, srcKey, vertex)
 		for destKey, _ := range vertex.Edges {
 			err := g.AddEdge(srcKey, destKey)
 			if err != nil {
-				_ = g.AddVertex(destKey)
+				addVertex(g, srcKey, vertex)
 				_ = g.AddEdge(srcKey, destKey)
 			}
 		}
@@ -32,4 +33,14 @@ func TestVisualizeInitializedWorld(t *testing.T) {
 	assert.NoError(err)
 	assert.NoError(draw.DOT(g, file))
 	assert.FileExists(filename)
+}
+
+func addVertex(g graph.Graph[string, string], srcKey string, vertex *Vertex) {
+	colorscheme := "purples3"
+	if vertex.IsSupplyCenter {
+		colorscheme = "greens3"
+	}
+	_ = g.AddVertex(srcKey,
+		graph.VertexAttribute("colorscheme", colorscheme), graph.VertexAttribute("style", "filled"),
+		graph.VertexAttribute("color", "2"), graph.VertexAttribute("fillcolor", "1"))
 }

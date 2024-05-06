@@ -12,18 +12,19 @@ type Graph struct {
 }
 
 type Vertex struct {
-	Key   string
-	Name  string
-	Type  TileType
-	Edges map[string]*Edge
+	Key            string
+	Name           string
+	Type           TileType
+	IsSupplyCenter bool
+	Edges          map[string]*Edge
 }
 
 type Edge struct {
 	Vertex *Vertex
 }
 
-func (this *Graph) AddVertex(key, name string, tileType TileType) {
-	this.Vertices[key] = &Vertex{Key: key, Name: name, Type: tileType, Edges: map[string]*Edge{}}
+func (this *Graph) AddVertex(key, name string, tileType TileType, isSupplyCenter bool) {
+	this.Vertices[key] = &Vertex{Key: key, Name: name, Type: tileType, IsSupplyCenter: isSupplyCenter, Edges: map[string]*Edge{}}
 }
 
 func (this *Graph) AddEdge(srcKey, destKey string) {

@@ -18,7 +18,8 @@ const (
 )
 
 type Country struct {
-	Name string
+	Name        string
+	HomeCenters []string
 }
 
 type State struct {

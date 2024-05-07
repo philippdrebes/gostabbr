@@ -40,6 +40,9 @@ func addVertex(g graph.Graph[string, string], srcKey string, vertex *Vertex) {
 	if vertex.IsSupplyCenter {
 		colorscheme = "greens3"
 	}
+	if vertex.Type == WaterTile {
+		colorscheme = "blues3"
+	}
 	_ = g.AddVertex(srcKey,
 		graph.VertexAttribute("colorscheme", colorscheme), graph.VertexAttribute("style", "filled"),
 		graph.VertexAttribute("color", "2"), graph.VertexAttribute("fillcolor", "1"))

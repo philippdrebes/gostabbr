@@ -58,6 +58,10 @@ func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error
 		return errors.New("Tile not found")
 	}
 
+	if this.Provinces[tile].Unit != nil {
+		return errors.New("Tile already occupied")
+	}
+
 	unit := Unit{
 		Country: country,
 		Type:    unitType,

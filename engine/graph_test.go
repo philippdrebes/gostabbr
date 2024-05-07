@@ -125,3 +125,19 @@ func TestGraphAddUnitToMissingTile(t *testing.T) {
 
 	assert.Error(err)
 }
+
+func TestGraphAddUnitToOccupiedTile(t *testing.T) {
+	assert := assert.New(t)
+
+	g := &Graph{Provinces: map[string]*Province{}}
+	utype := Fleet
+
+	g.AddProvince("ABC", "Test", WaterTile, false)
+	assert.NotNil(g.Provinces["ABC"])
+
+	err := g.AddUnit("country1", utype, "ABC")
+	assert.NoError(err)
+
+	err = g.AddUnit("country2", utype, "ABC")
+	assert.Error(err)
+}

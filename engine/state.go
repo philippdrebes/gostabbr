@@ -12,9 +12,9 @@ const (
 )
 
 const (
-	Order Phase = iota
-	Retreat
-	Build
+	OrderPhase Phase = iota
+	RetreatPhase
+	BuildPhase
 )
 
 type Country struct {
@@ -32,20 +32,20 @@ type State struct {
 func (s *State) nextPhase() error {
 	switch s.Turn {
 	case Spring, Fall:
-		if s.Phase == Order {
-			s.Phase = Retreat
+		if s.Phase == OrderPhase {
+			s.Phase = RetreatPhase
 		} else {
 			if s.Turn == Spring {
 				s.Turn = Fall
-				s.Phase = Order
+				s.Phase = OrderPhase
 			} else {
 				s.Turn = Winter
-				s.Phase = Build
+				s.Phase = BuildPhase
 			}
 		}
 	case Winter:
 		s.Turn = Spring
-		s.Phase = Order
+		s.Phase = OrderPhase
 	default:
 		return errors.New("Unsupported Turn")
 	}

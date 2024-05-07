@@ -13,11 +13,11 @@ func TestNextPhase(t *testing.T) {
 		expectedTurn  Turn
 		expectedPhase Phase
 	}{
-		{"Spring Order to Spring Retreat", Spring, Order, Spring, Retreat},
-		{"Spring Retreat to Fall Order", Spring, Retreat, Fall, Order},
-		{"Fall Order to Fall Retreat", Fall, Order, Fall, Retreat},
-		{"Fall Retreat to Winter Build", Fall, Retreat, Winter, Build},
-		{"Winter Build to Spring Order", Winter, Build, Spring, Order},
+		{"Spring Order to Spring Retreat", Spring, OrderPhase, Spring, RetreatPhase},
+		{"Spring Retreat to Fall Order", Spring, RetreatPhase, Fall, OrderPhase},
+		{"Fall Order to Fall Retreat", Fall, OrderPhase, Fall, RetreatPhase},
+		{"Fall Retreat to Winter Build", Fall, RetreatPhase, Winter, BuildPhase},
+		{"Winter Build to Spring Order", Winter, BuildPhase, Spring, OrderPhase},
 	}
 
 	for _, test := range tests {
@@ -36,7 +36,7 @@ func TestNextPhaseNegativeCases(t *testing.T) {
 		initialTurn  Turn
 		initialPhase Phase
 	}{
-		{"Invalid Turn", Turn(99), Build},
+		{"Invalid Turn", Turn(99), BuildPhase},
 	}
 
 	for _, test := range tests {

@@ -8,80 +8,80 @@ import (
 func TestGraphAddVertex(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 
-	g.AddVertex("ABC", "Test", WaterTile, false)
+	g.AddProvince("ABC", "Test", WaterTile, false)
 
-	assert.NotNil(g.Vertices["ABC"])
-	assert.Equal("Test", g.Vertices["ABC"].Name)
+	assert.NotNil(g.Provinces["ABC"])
+	assert.Equal("Test", g.Provinces["ABC"].Name)
 }
 
 func TestGraphAddEdgeToExistingVertices(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 
-	g.AddVertex("ABC", "Test", WaterTile, false)
-	g.AddVertex("DEF", "Another one", LandTile, false)
+	g.AddProvince("ABC", "Test", WaterTile, false)
+	g.AddProvince("DEF", "Another one", LandTile, false)
 	g.AddEdge("ABC", "DEF")
 
-	assert.NotNil(g.Vertices["ABC"])
-	assert.NotNil(g.Vertices["DEF"])
-	assert.NotNil(g.Vertices["ABC"].Edges["DEF"])
+	assert.NotNil(g.Provinces["ABC"])
+	assert.NotNil(g.Provinces["DEF"])
+	assert.NotNil(g.Provinces["ABC"].Edges["DEF"])
 }
 
 func TestGraphAddEdgeToMissingVertex(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 
-	g.AddVertex("ABC", "Test", WaterTile, false)
+	g.AddProvince("ABC", "Test", WaterTile, false)
 	g.AddEdge("ABC", "DEF")
 
-	assert.NotNil(g.Vertices["ABC"])
-	assert.Nil(g.Vertices["DEF"])
-	assert.Nil(g.Vertices["ABC"].Edges["DEF"])
+	assert.NotNil(g.Provinces["ABC"])
+	assert.Nil(g.Provinces["DEF"])
+	assert.Nil(g.Provinces["ABC"].Edges["DEF"])
 }
 
 func TestGraphAddEdgesToExistingVertices(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 
-	g.AddVertex("ABC", "Test", WaterTile, false)
-	g.AddVertex("DEF", "Another one", LandTile, false)
-	g.AddVertex("GHI", "Another one", LandTile, false)
+	g.AddProvince("ABC", "Test", WaterTile, false)
+	g.AddProvince("DEF", "Another one", LandTile, false)
+	g.AddProvince("GHI", "Another one", LandTile, false)
 	g.AddEdges("ABC", []string{"DEF", "GHI"})
 
-	assert.NotNil(g.Vertices["ABC"])
-	assert.NotNil(g.Vertices["DEF"])
-	assert.NotNil(g.Vertices["ABC"].Edges["DEF"])
-	assert.NotNil(g.Vertices["ABC"].Edges["GHI"])
+	assert.NotNil(g.Provinces["ABC"])
+	assert.NotNil(g.Provinces["DEF"])
+	assert.NotNil(g.Provinces["ABC"].Edges["DEF"])
+	assert.NotNil(g.Provinces["ABC"].Edges["GHI"])
 }
 
 func TestGraphAddEdgesToMissingVertex(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 
-	g.AddVertex("ABC", "Test", WaterTile, false)
+	g.AddProvince("ABC", "Test", WaterTile, false)
 	g.AddEdges("ABC", []string{"DEF", "GHI"})
 
-	assert.NotNil(g.Vertices["ABC"])
-	assert.Nil(g.Vertices["DEF"])
-	assert.Nil(g.Vertices["ABC"].Edges["DEF"])
-	assert.Nil(g.Vertices["ABC"].Edges["GHI"])
+	assert.NotNil(g.Provinces["ABC"])
+	assert.Nil(g.Provinces["DEF"])
+	assert.Nil(g.Provinces["ABC"].Edges["DEF"])
+	assert.Nil(g.Provinces["ABC"].Edges["GHI"])
 }
 
 func TestGetNeighbors(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 
-	g.AddVertex("ABC", "Test 1", WaterTile, false)
-	g.AddVertex("DEF", "Test 2", LandTile, false)
-	g.AddVertex("GHI", "Test 3", WaterTile, false)
-	g.AddVertex("JKL", "Test 4", LandTile, false)
+	g.AddProvince("ABC", "Test 1", WaterTile, false)
+	g.AddProvince("DEF", "Test 2", LandTile, false)
+	g.AddProvince("GHI", "Test 3", WaterTile, false)
+	g.AddProvince("JKL", "Test 4", LandTile, false)
 
 	g.AddEdge("ABC", "DEF")
 	g.AddEdge("ABC", "JKL")
@@ -96,17 +96,17 @@ func TestGetNeighbors(t *testing.T) {
 func TestGraphAddUnitToExistingTile(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 	country := "test country"
 	utype := Fleet
 
-	g.AddVertex("ABC", "Test", WaterTile, false)
-	assert.NotNil(g.Vertices["ABC"])
+	g.AddProvince("ABC", "Test", WaterTile, false)
+	assert.NotNil(g.Provinces["ABC"])
 
 	err := g.AddUnit(country, utype, "ABC")
 
 	assert.NoError(err)
-	unit := g.Vertices["ABC"].Unit
+	unit := g.Provinces["ABC"].Unit
 	assert.NotNil(unit)
 	assert.Equal(country, unit.Country)
 	assert.Equal(utype, unit.Type)
@@ -115,11 +115,11 @@ func TestGraphAddUnitToExistingTile(t *testing.T) {
 func TestGraphAddUnitToMissingTile(t *testing.T) {
 	assert := assert.New(t)
 
-	g := &Graph{Vertices: map[string]*Vertex{}}
+	g := &Graph{Provinces: map[string]*Province{}}
 	country := "test country"
 	utype := Fleet
 
-	assert.Nil(g.Vertices["ABC"])
+	assert.Nil(g.Provinces["ABC"])
 
 	err := g.AddUnit(country, utype, "ABC")
 

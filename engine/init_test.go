@@ -18,7 +18,7 @@ func TestVisualizeInitializedWorld(t *testing.T) {
 	world := game.World
 	g := graph.New(graph.StringHash)
 
-	for srcKey, vertex := range world.Vertices {
+	for srcKey, vertex := range world.Provinces {
 		addVertex(g, srcKey, vertex)
 		for destKey, _ := range vertex.Edges {
 			err := g.AddEdge(srcKey, destKey)
@@ -35,7 +35,7 @@ func TestVisualizeInitializedWorld(t *testing.T) {
 	assert.FileExists(filename)
 }
 
-func addVertex(g graph.Graph[string, string], srcKey string, vertex *Vertex) {
+func addVertex(g graph.Graph[string, string], srcKey string, vertex *Province) {
 	colorscheme := "purples3"
 	if vertex.IsSupplyCenter {
 		colorscheme = "greens3"

@@ -16,10 +16,10 @@ const (
 )
 
 type Graph struct {
-	Vertices map[string]*Vertex
+	Provinces map[string]*Province
 }
 
-type Vertex struct {
+type Province struct {
 	Key            string
 	Name           string
 	Type           TileType
@@ -30,7 +30,7 @@ type Vertex struct {
 }
 
 type Edge struct {
-	Vertex *Vertex
+	Vertex *Province
 }
 
 type Unit struct {
@@ -38,23 +38,23 @@ type Unit struct {
 	Type    UnitType
 }
 
-func (this *Graph) AddVertex(key, name string, tileType TileType, isSupplyCenter bool) {
-	this.Vertices[key] = &Vertex{Key: key, Name: name, Type: tileType, IsSupplyCenter: isSupplyCenter, Edges: map[string]*Edge{}}
+func (this *Graph) AddProvince(key, name string, tileType TileType, isSupplyCenter bool) {
+	this.Provinces[key] = &Province{Key: key, Name: name, Type: tileType, IsSupplyCenter: isSupplyCenter, Edges: map[string]*Edge{}}
 }
 
 func (this *Graph) AddEdge(srcKey, destKey string) {
-	if _, ok := this.Vertices[srcKey]; !ok {
+	if _, ok := this.Provinces[srcKey]; !ok {
 		return
 	}
-	if _, ok := this.Vertices[destKey]; !ok {
+	if _, ok := this.Provinces[destKey]; !ok {
 		return
 	}
 
-	this.Vertices[srcKey].Edges[destKey] = &Edge{Vertex: this.Vertices[destKey]}
+	this.Provinces[srcKey].Edges[destKey] = &Edge{Vertex: this.Provinces[destKey]}
 }
 
 func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error {
-	if _, ok := this.Vertices[tile]; !ok {
+	if _, ok := this.Provinces[tile]; !ok {
 		return errors.New("Tile not found")
 	}
 
@@ -63,29 +63,29 @@ func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error
 		Type:    unitType,
 	}
 
-	this.Vertices[tile].Unit = &unit
+	this.Provinces[tile].Unit = &unit
 
 	return nil
 }
 
 func (this *Graph) AddEdges(srcKey string, destKeys []string) {
-	if _, ok := this.Vertices[srcKey]; !ok {
+	if _, ok := this.Provinces[srcKey]; !ok {
 		return
 	}
 
 	for _, destKey := range destKeys {
-		if _, ok := this.Vertices[destKey]; !ok {
+		if _, ok := this.Provinces[destKey]; !ok {
 			return
 		}
 
-		this.Vertices[srcKey].Edges[destKey] = &Edge{Vertex: this.Vertices[destKey]}
+		this.Provinces[srcKey].Edges[destKey] = &Edge{Vertex: this.Provinces[destKey]}
 	}
 }
 
 func (this *Graph) GetNeighbors(srcKey string) []string {
 	result := []string{}
 
-	for _, edge := range this.Vertices[srcKey].Edges {
+	for _, edge := range this.Provinces[srcKey].Edges {
 		result = append(result, edge.Vertex.Name)
 	}
 

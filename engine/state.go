@@ -1,6 +1,8 @@
 package engine
 
-import "errors"
+import (
+	"errors"
+)
 
 type Turn int8
 type Phase int8
@@ -20,6 +22,7 @@ const (
 type Country struct {
 	Name        string
 	HomeCenters []string
+	orders      []Order
 }
 
 type State struct {
@@ -50,4 +53,19 @@ func (s *State) nextPhase() error {
 		return errors.New("Unsupported Turn")
 	}
 	return nil
+}
+
+func (this *Country) AddOrder(newOrder Order) {
+	if this.orders == nil {
+		this.orders = []Order{}
+	}
+
+	for index, existing := range this.orders {
+		if newOrder.GetPosition().Key == existing.GetPosition().Key {
+			this.orders[index] = newOrder
+			return
+		}
+	}
+
+	this.orders = append(this.orders, newOrder)
 }

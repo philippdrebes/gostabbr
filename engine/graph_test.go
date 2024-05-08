@@ -183,3 +183,23 @@ func TestGetUnits_NoneFromSpecifiedCountry(t *testing.T) {
 	}
 	assert.Empty(t, graph.GetUnits("Russia"), "There should be no units from the specified country (Russia).")
 }
+
+func TestGetProvince_Found(t *testing.T) {
+	graph := Graph{
+		Provinces: map[string]*Province{
+			"PAR": {Key: "PAR", Name: "Paris"},
+		},
+	}
+	province, err := graph.GetProvince("PAR")
+	assert.NoError(t, err, "Should not return an error for existing province key.")
+	assert.NotNil(t, province, "Returned province should not be nil.")
+	assert.Equal(t, "Paris", province.Name, "Province name should match the expected name.")
+}
+
+func TestGetProvince_NotFound(t *testing.T) {
+	graph := Graph{Provinces: map[string]*Province{}}
+	province, err := graph.GetProvince("PAR")
+	assert.Error(t, err, "Should return an error for non-existing province key.")
+	assert.Nil(t, province, "Returned province should be nil when key does not exist.")
+	assert.EqualError(t, err, "Province not found", "Error message should indicate that the province is not found.")
+}

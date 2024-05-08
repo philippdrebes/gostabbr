@@ -42,6 +42,14 @@ func (this *Graph) AddProvince(key, name string, tileType TileType, isSupplyCent
 	this.Provinces[key] = &Province{Key: key, Name: name, Type: tileType, IsSupplyCenter: isSupplyCenter, Edges: map[string]*Edge{}}
 }
 
+func (this *Graph) GetProvince(key string) (*Province, error) {
+	if _, ok := this.Provinces[key]; !ok {
+		return nil, errors.New("Province not found")
+	}
+
+	return this.Provinces[key], nil
+}
+
 func (this *Graph) AddEdge(srcKey, destKey string) {
 	if _, ok := this.Provinces[srcKey]; !ok {
 		return
@@ -53,13 +61,13 @@ func (this *Graph) AddEdge(srcKey, destKey string) {
 	this.Provinces[srcKey].Edges[destKey] = &Edge{Province: this.Provinces[destKey]}
 }
 
-func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error {
-	if _, ok := this.Provinces[tile]; !ok {
-		return errors.New("Tile not found")
+func (this *Graph) AddUnit(country string, unitType UnitType, province string) error {
+	if _, ok := this.Provinces[province]; !ok {
+		return errors.New("Province not found")
 	}
 
-	if this.Provinces[tile].Unit != nil {
-		return errors.New("Tile already occupied")
+	if this.Provinces[province].Unit != nil {
+		return errors.New("Province already occupied")
 	}
 
 	unit := Unit{
@@ -67,7 +75,7 @@ func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error
 		Type:    unitType,
 	}
 
-	this.Provinces[tile].Unit = &unit
+	this.Provinces[province].Unit = &unit
 
 	return nil
 }

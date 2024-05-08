@@ -38,35 +38,35 @@ type Unit struct {
 	Type    UnitType
 }
 
-func (this *Graph) AddProvince(key, name string, tileType TileType, isSupplyCenter bool) {
-	this.Provinces[key] = &Province{Key: key, Name: name, Type: tileType, IsSupplyCenter: isSupplyCenter, Edges: map[string]*Edge{}}
+func (g *Graph) AddProvince(key, name string, tileType TileType, isSupplyCenter bool) {
+	g.Provinces[key] = &Province{Key: key, Name: name, Type: tileType, IsSupplyCenter: isSupplyCenter, Edges: map[string]*Edge{}}
 }
 
-func (this *Graph) GetProvince(key string) (*Province, error) {
-	if _, ok := this.Provinces[key]; !ok {
+func (g *Graph) GetProvince(key string) (*Province, error) {
+	if _, ok := g.Provinces[key]; !ok {
 		return nil, errors.New("Province not found")
 	}
 
-	return this.Provinces[key], nil
+	return g.Provinces[key], nil
 }
 
-func (this *Graph) AddEdge(srcKey, destKey string) {
-	if _, ok := this.Provinces[srcKey]; !ok {
+func (g *Graph) AddEdge(srcKey, destKey string) {
+	if _, ok := g.Provinces[srcKey]; !ok {
 		return
 	}
-	if _, ok := this.Provinces[destKey]; !ok {
+	if _, ok := g.Provinces[destKey]; !ok {
 		return
 	}
 
-	this.Provinces[srcKey].Edges[destKey] = &Edge{Province: this.Provinces[destKey]}
+	g.Provinces[srcKey].Edges[destKey] = &Edge{Province: g.Provinces[destKey]}
 }
 
-func (this *Graph) AddUnit(country string, unitType UnitType, province string) error {
-	if _, ok := this.Provinces[province]; !ok {
+func (g *Graph) AddUnit(country string, unitType UnitType, province string) error {
+	if _, ok := g.Provinces[province]; !ok {
 		return errors.New("Province not found")
 	}
 
-	if this.Provinces[province].Unit != nil {
+	if g.Provinces[province].Unit != nil {
 		return errors.New("Province already occupied")
 	}
 
@@ -75,14 +75,14 @@ func (this *Graph) AddUnit(country string, unitType UnitType, province string) e
 		Type:    unitType,
 	}
 
-	this.Provinces[province].Unit = &unit
+	g.Provinces[province].Unit = &unit
 
 	return nil
 }
 
-func (this *Graph) GetUnits(country string) []*Unit {
+func (g *Graph) GetUnits(country string) []*Unit {
 	units := []*Unit{}
-	for _, tile := range this.Provinces {
+	for _, tile := range g.Provinces {
 		if tile.Unit.Country == country {
 			units = append(units, tile.Unit)
 		}
@@ -90,24 +90,24 @@ func (this *Graph) GetUnits(country string) []*Unit {
 	return units
 }
 
-func (this *Graph) AddEdges(srcKey string, destKeys []string) {
-	if _, ok := this.Provinces[srcKey]; !ok {
+func (g *Graph) AddEdges(srcKey string, destKeys []string) {
+	if _, ok := g.Provinces[srcKey]; !ok {
 		return
 	}
 
 	for _, destKey := range destKeys {
-		if _, ok := this.Provinces[destKey]; !ok {
+		if _, ok := g.Provinces[destKey]; !ok {
 			return
 		}
 
-		this.Provinces[srcKey].Edges[destKey] = &Edge{Province: this.Provinces[destKey]}
+		g.Provinces[srcKey].Edges[destKey] = &Edge{Province: g.Provinces[destKey]}
 	}
 }
 
-func (this *Graph) GetNeighbors(srcKey string) []string {
+func (g *Graph) GetNeighbors(srcKey string) []string {
 	result := []string{}
 
-	for _, edge := range this.Provinces[srcKey].Edges {
+	for _, edge := range g.Provinces[srcKey].Edges {
 		result = append(result, edge.Province.Name)
 	}
 

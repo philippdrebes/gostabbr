@@ -31,45 +31,45 @@ type ConvoyOrder struct {
 	Dest     *Province
 }
 
-func (this HoldOrder) String() string {
-	return fmt.Sprintf("%s %s H", this.Unit.Type, this.Position.Key)
+func (h HoldOrder) String() string {
+	return fmt.Sprintf("%s %s H", h.Unit.Type, h.Position.Key)
 }
 
-func (this HoldOrder) GetPosition() *Province {
-	return this.Position
+func (h HoldOrder) GetPosition() *Province {
+	return h.Position
 }
 
-func (this MoveOrder) String() string {
-	return fmt.Sprintf("%s %s - %s", this.Unit.Type, this.Position.Key, this.Dest.Key)
+func (m MoveOrder) String() string {
+	return fmt.Sprintf("%s %s - %s", m.Unit.Type, m.Position.Key, m.Dest.Key)
 }
 
-func (this MoveOrder) GetPosition() *Province {
-	return this.Position
+func (m MoveOrder) GetPosition() *Province {
+	return m.Position
 }
 
-func (this SupportOrder) String() string {
-	if this.Src == this.Dest {
-		return fmt.Sprintf("%s %s S %s", this.Unit.Type, this.Position.Key, this.Src.Key)
+func (s SupportOrder) String() string {
+	if s.Src == s.Dest {
+		return fmt.Sprintf("%s %s S %s", s.Unit.Type, s.Position.Key, s.Src.Key)
 	}
-	return fmt.Sprintf("%s %s S %s - %s", this.Unit.Type, this.Position.Key, this.Src.Key, this.Dest.Key)
+	return fmt.Sprintf("%s %s S %s - %s", s.Unit.Type, s.Position.Key, s.Src.Key, s.Dest.Key)
 }
 
-func (this SupportOrder) GetPosition() *Province {
-	return this.Position
+func (s SupportOrder) GetPosition() *Province {
+	return s.Position
 }
 
-func (this ConvoyOrder) String() string {
-	return fmt.Sprintf("%s %s C %s - %s", this.Unit.Type, this.Position.Key, this.Src.Key, this.Dest.Key)
+func (c ConvoyOrder) String() string {
+	return fmt.Sprintf("%s %s C %s - %s", c.Unit.Type, c.Position.Key, c.Src.Key, c.Dest.Key)
 }
 
-func (this ConvoyOrder) GetPosition() *Province {
-	return this.Position
+func (c ConvoyOrder) GetPosition() *Province {
+	return c.Position
 }
 
-func (this UnitType) String() string {
-	if this == Army {
+func (u UnitType) String() string {
+	if u == Army {
 		return "A"
-	} else if this == Fleet {
+	} else if u == Fleet {
 		return "F"
 	}
 	return ""

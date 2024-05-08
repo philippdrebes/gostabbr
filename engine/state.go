@@ -55,17 +55,19 @@ func (s *State) nextPhase() error {
 	return nil
 }
 
-func (this *Country) AddOrder(newOrder Order) {
-	if this.orders == nil {
-		this.orders = []Order{}
+func (s *State) Adjudicate() {}
+
+func (c *Country) AddOrder(newOrder Order) {
+	if c.orders == nil {
+		c.orders = []Order{}
 	}
 
-	for index, existing := range this.orders {
+	for index, existing := range c.orders {
 		if newOrder.GetPosition().Key == existing.GetPosition().Key {
-			this.orders[index] = newOrder
+			c.orders[index] = newOrder
 			return
 		}
 	}
 
-	this.orders = append(this.orders, newOrder)
+	c.orders = append(c.orders, newOrder)
 }

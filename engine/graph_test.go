@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestGraphAddVertex(t *testing.T) {
+func TestAddVertex(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -16,7 +16,7 @@ func TestGraphAddVertex(t *testing.T) {
 	assert.Equal("Test", g.Provinces["ABC"].Name)
 }
 
-func TestGraphAddEdgeToExistingVertices(t *testing.T) {
+func TestAddEdge_AddEdgeToExistingVertices(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -30,7 +30,7 @@ func TestGraphAddEdgeToExistingVertices(t *testing.T) {
 	assert.NotNil(g.Provinces["ABC"].Edges["DEF"])
 }
 
-func TestGraphAddEdgeToMissingVertex(t *testing.T) {
+func TestAddEdge_AddEdgeToMissingVertex(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -43,7 +43,7 @@ func TestGraphAddEdgeToMissingVertex(t *testing.T) {
 	assert.Nil(g.Provinces["ABC"].Edges["DEF"])
 }
 
-func TestGraphAddEdgesToExistingVertices(t *testing.T) {
+func TestAddEdge_AddEdgesToExistingVertices(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -59,7 +59,7 @@ func TestGraphAddEdgesToExistingVertices(t *testing.T) {
 	assert.NotNil(g.Provinces["ABC"].Edges["GHI"])
 }
 
-func TestGraphAddEdgesToMissingVertex(t *testing.T) {
+func TestAddEdge_AddEdgesToMissingVertex(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -93,7 +93,7 @@ func TestGetNeighbors(t *testing.T) {
 	assert.Equal(2, len(neighbors))
 }
 
-func TestGraphAddUnitToExistingTile(t *testing.T) {
+func TestAddUnit_AddUnitToExistingTile(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -112,7 +112,7 @@ func TestGraphAddUnitToExistingTile(t *testing.T) {
 	assert.Equal(utype, unit.Type)
 }
 
-func TestGraphAddUnitToMissingTile(t *testing.T) {
+func TestAddUnit_AddUnitToMissingTile(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -126,7 +126,7 @@ func TestGraphAddUnitToMissingTile(t *testing.T) {
 	assert.Error(err)
 }
 
-func TestGraphAddUnitToOccupiedTile(t *testing.T) {
+func TestAddUnit_AddUnitToOccupiedTile(t *testing.T) {
 	assert := assert.New(t)
 
 	g := &Graph{Provinces: map[string]*Province{}}
@@ -140,4 +140,46 @@ func TestGraphAddUnitToOccupiedTile(t *testing.T) {
 
 	err = g.AddUnit("country2", utype, "ABC")
 	assert.Error(err)
+}
+
+func TestGetUnits_NoUnits(t *testing.T) {
+	graph := Graph{Provinces: map[string]*Province{}}
+	assert.Empty(t, graph.GetUnits("France"), "There should be no units for an empty graph.")
+}
+
+func TestGetUnits_UnitsFromMultipleCountries(t *testing.T) {
+	graph := Graph{
+		Provinces: map[string]*Province{
+			"PAR": {Key: "PAR", Unit: &Unit{Country: "France", Type: Army}},
+			"BER": {Key: "BER", Unit: &Unit{Country: "Germany", Type: Army}},
+			"BRE": {Key: "BRE", Unit: &Unit{Country: "France", Type: Fleet}},
+		},
+	}
+	units := graph.GetUnits("France")
+	assert.Len(t, units, 2, "There should be two units from France.")
+	assert.Contains(t, units, &Unit{Country: "France", Type: Army}, "The units should include the army in Paris (PAR).")
+	assert.Contains(t, units, &Unit{Country: "France", Type: Fleet}, "The units should include the fleet in Brest (BRE).")
+}
+
+func TestGetUnits_MultipleUnitsSameCountry(t *testing.T) {
+	graph := Graph{
+		Provinces: map[string]*Province{
+			"ROM": {Key: "ROM", Unit: &Unit{Country: "Italy", Type: Army}},
+			"NAP": {Key: "NAP", Unit: &Unit{Country: "Italy", Type: Fleet}},
+		},
+	}
+	units := graph.GetUnits("Italy")
+	assert.Len(t, units, 2, "There should be two units from the same country (Italy).")
+	assert.Contains(t, units, &Unit{Country: "Italy", Type: Army}, "The units should include the army in Rome (ROM).")
+	assert.Contains(t, units, &Unit{Country: "Italy", Type: Fleet}, "The units should include the fleet in Naples (NAP).")
+}
+
+func TestGetUnits_NoneFromSpecifiedCountry(t *testing.T) {
+	graph := Graph{
+		Provinces: map[string]*Province{
+			"MUN": {Key: "MUN", Unit: &Unit{Country: "Germany", Type: Army}},
+			"KIE": {Key: "KIE", Unit: &Unit{Country: "Germany", Type: Fleet}},
+		},
+	}
+	assert.Empty(t, graph.GetUnits("Russia"), "There should be no units from the specified country (Russia).")
 }

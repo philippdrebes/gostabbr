@@ -72,6 +72,16 @@ func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error
 	return nil
 }
 
+func (this *Graph) GetUnits(country string) []*Unit {
+	units := []*Unit{}
+	for _, tile := range this.Provinces {
+		if tile.Unit.Country == country {
+			units = append(units, tile.Unit)
+		}
+	}
+	return units
+}
+
 func (this *Graph) AddEdges(srcKey string, destKeys []string) {
 	if _, ok := this.Provinces[srcKey]; !ok {
 		return

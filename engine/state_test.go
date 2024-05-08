@@ -30,7 +30,7 @@ func TestNextPhase(t *testing.T) {
 	}
 }
 
-func TestNextPhaseNegativeCases(t *testing.T) {
+func TestNextPhase_NegativeCases(t *testing.T) {
 	tests := []struct {
 		name         string
 		initialTurn  Turn

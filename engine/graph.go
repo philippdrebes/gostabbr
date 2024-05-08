@@ -30,7 +30,7 @@ type Province struct {
 }
 
 type Edge struct {
-	Vertex *Province
+	Province *Province
 }
 
 type Unit struct {
@@ -50,7 +50,7 @@ func (this *Graph) AddEdge(srcKey, destKey string) {
 		return
 	}
 
-	this.Provinces[srcKey].Edges[destKey] = &Edge{Vertex: this.Provinces[destKey]}
+	this.Provinces[srcKey].Edges[destKey] = &Edge{Province: this.Provinces[destKey]}
 }
 
 func (this *Graph) AddUnit(country string, unitType UnitType, tile string) error {
@@ -82,7 +82,7 @@ func (this *Graph) AddEdges(srcKey string, destKeys []string) {
 			return
 		}
 
-		this.Provinces[srcKey].Edges[destKey] = &Edge{Vertex: this.Provinces[destKey]}
+		this.Provinces[srcKey].Edges[destKey] = &Edge{Province: this.Provinces[destKey]}
 	}
 }
 
@@ -90,7 +90,7 @@ func (this *Graph) GetNeighbors(srcKey string) []string {
 	result := []string{}
 
 	for _, edge := range this.Provinces[srcKey].Edges {
-		result = append(result, edge.Vertex.Name)
+		result = append(result, edge.Province.Name)
 	}
 
 	return result

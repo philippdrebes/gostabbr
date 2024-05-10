@@ -201,5 +201,5 @@ func TestGetProvince_NotFound(t *testing.T) {
 	province, err := graph.GetProvince("PAR")
 	assert.Error(t, err, "Should return an error for non-existing province key.")
 	assert.Nil(t, province, "Returned province should be nil when key does not exist.")
-	assert.EqualError(t, err, "Province not found", "Error message should indicate that the province is not found.")
+	assert.EqualError(t, err, "Province 'PAR' not found", "Error message should indicate that the province is not found.")
 }

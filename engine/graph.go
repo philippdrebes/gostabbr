@@ -1,6 +1,9 @@
 package engine
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type TileType int8
 type UnitType int8
@@ -44,7 +47,7 @@ func (g *Graph) AddProvince(key, name string, tileType TileType, isSupplyCenter 
 
 func (g *Graph) GetProvince(key string) (*Province, error) {
 	if _, ok := g.Provinces[key]; !ok {
-		return nil, errors.New("Province not found")
+		return nil, errors.New(fmt.Sprintf("Province '%s' not found", key))
 	}
 
 	return g.Provinces[key], nil

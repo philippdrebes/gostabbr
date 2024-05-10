@@ -14,7 +14,8 @@ func TestVisualizeInitializedWorld(t *testing.T) {
 	assert := assert.New(t)
 	filename := "./world.dot"
 
-	game := InitializeNewGame()
+	game, err := InitializeNewGame()
+	assert.NoError(err)
 	world := game.World
 	g := graph.New(graph.StringHash)
 

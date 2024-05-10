@@ -1,13 +1,13 @@
 package engine
 
-func InitializeNewGame() *State {
+func InitializeNewGame() (*State, error) {
 	game := &State{
 		Turn:  Spring,
 		Phase: OrderPhase,
 		Countries: [7]*Country{
 			&Country{Name: "Austria", HomeCenters: []string{"Vie", "Bud", "Tri"}},
 			&Country{Name: "England", HomeCenters: []string{"Lon", "Edi", "Lvp"}},
-			&Country{Name: "France", HomeCenters: []string{"Par", "Mas", "Bre"}},
+			&Country{Name: "France", HomeCenters: []string{"Par", "Mar", "Bre"}},
 			&Country{Name: "Germany", HomeCenters: []string{"Ber", "Mun", "Kie"}},
 			&Country{Name: "Italy", HomeCenters: []string{"Rom", "Ven", "Nap"}},
 			&Country{Name: "Russia", HomeCenters: []string{"Mos", "Sev", "War", "Stp_sc"}},
@@ -16,7 +16,18 @@ func InitializeNewGame() *State {
 		World: initializeWorld(),
 	}
 
-	return game
+	for _, c := range game.Countries {
+		for _, hc := range c.HomeCenters {
+			p, err := game.World.GetProvince(hc)
+			if err != nil {
+				return nil, err
+			}
+
+			p.OwnedBy = hc
+		}
+	}
+
+	return game, nil
 }
 
 func initializeWorld() *Graph {

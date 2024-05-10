@@ -146,7 +146,7 @@ func (c *Country) addOrder(newOrder Order) {
 	c.orders = append(c.orders, newOrder)
 }
 
-func (s *State) NextPhase() error {
+func (s *State) nextPhase() error {
 	switch s.Turn {
 	case Spring, Fall:
 		if s.Phase == OrderPhase {
@@ -171,11 +171,24 @@ func (s *State) NextPhase() error {
 
 func (s *State) Adjudicate() error {
 	log.Println("Adjudication starting...")
+	log.Println("Collecting orders")
+	orders := []Order{}
 	for _, country := range s.Countries {
-		log.Printf("Processing %s orders", country.Name)
+		if country == nil {
+			continue
+		}
+		log.Printf("Processing %ss orders", country.Name)
 		for _, order := range country.orders {
+			if order == nil {
+				continue
+			}
 			log.Printf("Processing order %s", order)
+			orders = append(orders, order)
 		}
 	}
+
+	log.Printf("Processing %d orders in total", len(orders))
+
+	// return s.nextPhase()
 	return nil
 }

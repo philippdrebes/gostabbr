@@ -3,6 +3,7 @@ package engine
 import "fmt"
 
 type Order interface {
+	fmt.Stringer
 	GetPosition() *Province
 }
 

@@ -24,7 +24,7 @@ func TestNextPhase(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			state := State{Turn: test.initialTurn, Phase: test.initialPhase}
-			state.NextPhase()
+			state.nextPhase()
 			assert.Equal(t, test.expectedTurn, state.Turn, "Turn should transition correctly in "+test.name)
 			assert.Equal(t, test.expectedPhase, state.Phase, "Phase should transition correctly in "+test.name)
 		})
@@ -43,7 +43,7 @@ func TestNextPhase_NegativeCases(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			state := State{Turn: test.initialTurn, Phase: test.initialPhase}
-			err := state.NextPhase()
+			err := state.nextPhase()
 			assert.Error(t, err)
 		})
 	}
@@ -105,7 +105,7 @@ func setupStateWithGraph() *State {
 		"Edinburgh": {Key: "Edinburgh"},
 	}
 	graph := &Graph{Provinces: provinces}
-	return &State{
+	state := &State{
 		Turn:  Spring,
 		Phase: OrderPhase,
 		Countries: [7]*Country{
@@ -115,6 +115,12 @@ func setupStateWithGraph() *State {
 		},
 		World: graph,
 	}
+
+	state.World.AddUnit("France", Army, "Paris")
+	state.World.AddUnit("Germany", Army, "Berlin")
+	state.World.AddUnit("England", Fleet, "Edinburgh")
+
+	return state
 }
 
 func TestAddHoldOrder_ValidInputs(t *testing.T) {
@@ -161,4 +167,25 @@ func TestAddOrder_InvalidDestination(t *testing.T) {
 	s := setupStateWithGraph()
 	err := s.AddMoveOrder("France", "Paris", "Vienna")
 	assert.Error(t, err, "Should return an error when adding a move order with a nonexistent destination")
+}
+
+func TestAdjudicate_WithOrders(t *testing.T) {
+	s := setupStateWithGraph()
+
+	// Manually add orders to the countries for testing
+	// s.Countries[0].orders = append(s.Countries[0].orders, &HoldOrder{Position: &Province{Key: "Paris"}})
+	// s.Countries[1].orders = append(s.Countries[1].orders, &MoveOrder{Position: &Province{Key: "Berlin"}, Dest: &Province{Key: "Munich"}})
+
+	err := s.AddHoldOrder("France", "Paris")
+	assert.NoError(t, err, "AddMoveOrder should complete without errors")
+	err = s.AddMoveOrder("Germany", "Berlin", "Munich")
+	assert.NoError(t, err, "AddMoveOrder should complete without errors")
+
+	err = s.Adjudicate()
+	assert.NoError(t, err, "Adjudicate should complete without error with orders")
+
+	// We cannot directly test log outputs or the internal state of `orders` slice without additional output from Adjudicate.
+	// If `orders` affected state, you'd check that state here.
+	// For example:
+	// assert.Equal(t, 2, len(collectedOrders), "Should collect all orders from countries")
 }

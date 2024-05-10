@@ -7,3 +7,8 @@ cover:
 
 watch:
 	@reflex -r '\.go$$' -s -- go test -v -cover ./...
+
+graph:
+	@go test ./...
+	@fdp -Tsvg -O engine/world.dot
+	@mv engine/world.dot.svg ./world.svg

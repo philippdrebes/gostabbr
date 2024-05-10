@@ -24,7 +24,7 @@ func TestNextPhase(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			state := State{Turn: test.initialTurn, Phase: test.initialPhase}
-			state.nextPhase()
+			state.NextPhase()
 			assert.Equal(t, test.expectedTurn, state.Turn, "Turn should transition correctly in "+test.name)
 			assert.Equal(t, test.expectedPhase, state.Phase, "Phase should transition correctly in "+test.name)
 		})
@@ -43,7 +43,7 @@ func TestNextPhase_NegativeCases(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			state := State{Turn: test.initialTurn, Phase: test.initialPhase}
-			err := state.nextPhase()
+			err := state.NextPhase()
 			assert.Error(t, err)
 		})
 	}
@@ -51,22 +51,22 @@ func TestNextPhase_NegativeCases(t *testing.T) {
 
 func TestAddOrder_HoldOrder(t *testing.T) {
 	country := &Country{}
-	paris := &Province{Key: "Paris"}
 	unit := &Unit{Type: Army}
-	holdOrder := &HoldOrder{Unit: unit, Position: paris}
-	country.AddOrder(holdOrder)
+	paris := &Province{Key: "Paris", Unit: unit}
+	holdOrder := &HoldOrder{Position: paris}
+	country.addOrder(holdOrder)
 	assert.Equal(t, 1, len(country.orders), "Country should have one order after addition")
 	assert.Equal(t, paris, country.orders[0].GetPosition(), "Order position should be Paris")
 }
 
 func TestAddOrder_ReplaceOrderWithMoveOrder(t *testing.T) {
 	country := &Country{}
-	paris := &Province{Key: "Paris"}
 	unit := &Unit{Type: Army}
-	holdOrder := &HoldOrder{Unit: unit, Position: paris}
-	moveOrder := &MoveOrder{Unit: unit, Position: paris, Dest: &Province{Key: "Berlin"}}
-	country.AddOrder(holdOrder)
-	country.AddOrder(moveOrder)
+	paris := &Province{Unit: unit, Key: "Paris"}
+	holdOrder := &HoldOrder{Position: paris}
+	moveOrder := &MoveOrder{Position: paris, Dest: &Province{Key: "Berlin"}}
+	country.addOrder(holdOrder)
+	country.addOrder(moveOrder)
 	assert.Equal(t, 1, len(country.orders), "Country should still have one order after replacement")
 	assert.IsType(t, &MoveOrder{}, country.orders[0], "The replaced order should be a MoveOrder")
 	assert.Equal(t, "Berlin", country.orders[0].(*MoveOrder).Dest.Key, "Destination of MoveOrder should be Berlin")
@@ -74,25 +74,91 @@ func TestAddOrder_ReplaceOrderWithMoveOrder(t *testing.T) {
 
 func TestAddOrder_AddMultipleOrdersDifferentLocations(t *testing.T) {
 	country := &Country{}
-	paris := &Province{Key: "Paris"}
-	berlin := &Province{Key: "Berlin"}
 	unit := &Unit{Type: Army}
-	holdOrderParis := &HoldOrder{Unit: unit, Position: paris}
-	holdOrderBerlin := &HoldOrder{Unit: unit, Position: berlin}
-	country.AddOrder(holdOrderParis)
-	country.AddOrder(holdOrderBerlin)
+	paris := &Province{Key: "Paris", Unit: unit}
+	berlin := &Province{Key: "Berlin", Unit: unit}
+	holdOrderParis := &HoldOrder{Position: paris}
+	holdOrderBerlin := &HoldOrder{Position: berlin}
+	country.addOrder(holdOrderParis)
+	country.addOrder(holdOrderBerlin)
 	assert.Equal(t, 2, len(country.orders), "Country should have two orders for different locations")
 	assert.NotEqual(t, country.orders[0].GetPosition(), country.orders[1].GetPosition(), "Orders should be in different provinces")
 }
 
 func TestAddOrder_NoDuplicateOnNonMatchingPositions(t *testing.T) {
 	country := &Country{}
-	paris := &Province{Key: "Paris"}
-	berlin := &Province{Key: "Berlin"}
 	unit := &Unit{Type: Army}
-	holdOrderParis := &HoldOrder{Unit: unit, Position: paris}
-	moveOrderBerlin := &MoveOrder{Unit: unit, Position: berlin, Dest: &Province{Key: "Munich"}}
-	country.AddOrder(holdOrderParis)
-	country.AddOrder(moveOrderBerlin)
+	paris := &Province{Key: "Paris", Unit: unit}
+	berlin := &Province{Key: "Berlin", Unit: unit}
+	holdOrderParis := &HoldOrder{Position: paris}
+	moveOrderBerlin := &MoveOrder{Position: berlin, Dest: &Province{Key: "Munich"}}
+	country.addOrder(holdOrderParis)
+	country.addOrder(moveOrderBerlin)
 	assert.Equal(t, 2, len(country.orders), "Country should have two distinct orders when positions don't match")
+}
+
+func setupStateWithGraph() *State {
+	provinces := map[string]*Province{
+		"Paris":     {Key: "Paris"},
+		"Berlin":    {Key: "Berlin"},
+		"Munich":    {Key: "Munich"},
+		"Edinburgh": {Key: "Edinburgh"},
+	}
+	graph := &Graph{Provinces: provinces}
+	return &State{
+		Turn:  Spring,
+		Phase: OrderPhase,
+		Countries: [7]*Country{
+			{Name: "France"},
+			{Name: "Germany"},
+			{Name: "England"},
+		},
+		World: graph,
+	}
+}
+
+func TestAddHoldOrder_ValidInputs(t *testing.T) {
+	s := setupStateWithGraph()
+	err := s.AddHoldOrder("France", "Paris")
+	assert.NoError(t, err, "Adding a valid hold order should not produce an error")
+	assert.IsType(t, &HoldOrder{}, s.Countries[0].orders[0], "Order should be a HoldOrder")
+}
+
+func TestAddMoveOrder_ValidInputs(t *testing.T) {
+	s := setupStateWithGraph()
+	err := s.AddMoveOrder("France", "Paris", "Berlin")
+	assert.NoError(t, err, "Adding a valid move order should not produce an error")
+	assert.IsType(t, &MoveOrder{}, s.Countries[0].orders[0], "Order should be a MoveOrder")
+}
+
+func TestAddSupportOrder_ValidInputs(t *testing.T) {
+	s := setupStateWithGraph()
+	err := s.AddSupportOrder("France", "Paris", "Munich", "Berlin")
+	assert.NoError(t, err, "Adding a valid support order should not produce an error")
+	assert.IsType(t, &SupportOrder{}, s.Countries[0].orders[0], "Order should be a SupportOrder")
+}
+
+func TestAddConvoyOrder_ValidInputs(t *testing.T) {
+	s := setupStateWithGraph()
+	err := s.AddConvoyOrder("England", "Edinburgh", "Paris", "Munich")
+	assert.NoError(t, err, "Adding a valid convoy order should not produce an error")
+	assert.IsType(t, &ConvoyOrder{}, s.Countries[2].orders[0], "Order should be a ConvoyOrder")
+}
+
+func TestAddOrder_InvalidCountry(t *testing.T) {
+	s := setupStateWithGraph()
+	err := s.AddHoldOrder("Spain", "Paris")
+	assert.Error(t, err, "Should return an error when adding an order to a nonexistent country")
+}
+
+func TestAddOrder_InvalidProvince(t *testing.T) {
+	s := setupStateWithGraph()
+	err := s.AddHoldOrder("France", "Vienna")
+	assert.Error(t, err, "Should return an error when adding an order to a nonexistent province")
+}
+
+func TestAddOrder_InvalidDestination(t *testing.T) {
+	s := setupStateWithGraph()
+	err := s.AddMoveOrder("France", "Paris", "Vienna")
+	assert.Error(t, err, "Should return an error when adding a move order with a nonexistent destination")
 }

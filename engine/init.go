@@ -4,14 +4,14 @@ func InitializeNewGame() *State {
 	game := &State{
 		Turn:  Spring,
 		Phase: OrderPhase,
-		Countries: [7]Country{
-			Country{Name: "Austria", HomeCenters: []string{"Vie", "Bud", "Tri"}},
-			Country{Name: "England", HomeCenters: []string{"Lon", "Edi", "Lvp"}},
-			Country{Name: "France", HomeCenters: []string{"Par", "Mas", "Bre"}},
-			Country{Name: "Germany", HomeCenters: []string{"Ber", "Mun", "Kie"}},
-			Country{Name: "Italy", HomeCenters: []string{"Rom", "Ven", "Nap"}},
-			Country{Name: "Russia", HomeCenters: []string{"Mos", "Sev", "War", "Stp_sc"}},
-			Country{Name: "Turkey", HomeCenters: []string{"Ank", "Con", "Smy"}},
+		Countries: [7]*Country{
+			&Country{Name: "Austria", HomeCenters: []string{"Vie", "Bud", "Tri"}},
+			&Country{Name: "England", HomeCenters: []string{"Lon", "Edi", "Lvp"}},
+			&Country{Name: "France", HomeCenters: []string{"Par", "Mas", "Bre"}},
+			&Country{Name: "Germany", HomeCenters: []string{"Ber", "Mun", "Kie"}},
+			&Country{Name: "Italy", HomeCenters: []string{"Rom", "Ven", "Nap"}},
+			&Country{Name: "Russia", HomeCenters: []string{"Mos", "Sev", "War", "Stp_sc"}},
+			&Country{Name: "Turkey", HomeCenters: []string{"Ank", "Con", "Smy"}},
 		},
 		World: initializeWorld(),
 	}

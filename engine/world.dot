@@ -1,265 +1,51 @@
 strict graph {
 
 
-	"Ukr" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Ukr" -- "Gal" [  weight=0 ];
-
-	"Ukr" -- "Mos" [  weight=0 ];
-
-	"Ukr" -- "Rum" [  weight=0 ];
-
-	"Ukr" -- "Sev" [  weight=0 ];
-
-	"Ukr" -- "War" [  weight=0 ];
-
-	"Fin" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Fin" -- "Stp" [  weight=0 ];
-
-	"Fin" -- "Nwy" [  weight=0 ];
-
-	"Fin" -- "BOT" [  weight=0 ];
-
-	"Fin" -- "Swe" [  weight=0 ];
-
-	"Bur" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Bur" -- "Ruh" [  weight=0 ];
-
-	"Bur" -- "Gas" [  weight=0 ];
-
-	"Bur" -- "Mar" [  weight=0 ];
-
-	"Bur" -- "Par" [  weight=0 ];
-
-	"Bur" -- "Bel" [  weight=0 ];
-
-	"Bur" -- "Pic" [  weight=0 ];
-
-	"Bur" -- "Mun" [  weight=0 ];
-
-	"Alb" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Alb" -- "Tri" [  weight=0 ];
-
-	"Alb" -- "Gre" [  weight=0 ];
-
-	"Alb" -- "ION" [  weight=0 ];
-
-	"Alb" -- "Ser" [  weight=0 ];
-
-	"Alb" -- "ADR" [  weight=0 ];
-
-	"Lon" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Lon" -- "Yor" [  weight=0 ];
-
-	"Lon" -- "ENG" [  weight=0 ];
-
-	"Lon" -- "NTH" [  weight=0 ];
-
-	"Lon" -- "Wal" [  weight=0 ];
-
-	"Pru" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Pru" -- "Sil" [  weight=0 ];
-
-	"Pru" -- "BAL" [  weight=0 ];
-
-	"Pru" -- "War" [  weight=0 ];
-
-	"Pru" -- "Ber" [  weight=0 ];
-
-	"Pru" -- "Lvn" [  weight=0 ];
-
 	"Mos" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Mos" -- "Lvn" [  weight=0 ];
 
 	"Mos" -- "Sev" [  weight=0 ];
 
-	"Mos" -- "Stp" [  weight=0 ];
+	"Mos" -- "Ukr" [  weight=0 ];
 
 	"Mos" -- "War" [  weight=0 ];
 
-	"Mos" -- "Ukr" [  weight=0 ];
+	"Mos" -- "Stp" [  weight=0 ];
 
-	"Stp_nc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Mos" -- "Lvn" [  weight=0 ];
 
-	"Stp_nc" -- "BAR" [  weight=0 ];
+	"ADR" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Stp_nc" -- "Nwy" [  weight=0 ];
+	"ADR" -- "Ven" [  weight=0 ];
 
-	"Stp_nc" -- "Stp" [  weight=0 ];
+	"ADR" -- "Tri" [  weight=0 ];
 
-	"War" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"ADR" -- "Apu" [  weight=0 ];
 
-	"War" -- "Mos" [  weight=0 ];
+	"ADR" -- "ION" [  weight=0 ];
 
-	"War" -- "Ukr" [  weight=0 ];
+	"ADR" -- "Alb" [  weight=0 ];
 
-	"War" -- "Gal" [  weight=0 ];
+	"Rum" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"War" -- "Sil" [  weight=0 ];
+	"Rum" -- "Ser" [  weight=0 ];
 
-	"War" -- "Lvn" [  weight=0 ];
+	"Rum" -- "Bud" [  weight=0 ];
 
-	"War" -- "Pru" [  weight=0 ];
+	"Rum" -- "Ukr" [  weight=0 ];
 
-	"Lvp" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Rum" -- "BLA" [  weight=0 ];
 
-	"Lvp" -- "NAO" [  weight=0 ];
+	"Rum" -- "Sev" [  weight=0 ];
 
-	"Lvp" -- "Wal" [  weight=0 ];
+	"Rum" -- "Bul" [  weight=0 ];
 
-	"Lvp" -- "Yor" [  weight=0 ];
+	"Rum" -- "Bul_ec" [  weight=0 ];
 
-	"Lvp" -- "Edi" [  weight=0 ];
-
-	"Lvp" -- "Cly" [  weight=0 ];
-
-	"Lvp" -- "IRI" [  weight=0 ];
-
-	"Bud" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Bud" -- "Ser" [  weight=0 ];
-
-	"Bud" -- "Vie" [  weight=0 ];
-
-	"Bud" -- "Gal" [  weight=0 ];
-
-	"Bud" -- "Rum" [  weight=0 ];
-
-	"Bud" -- "Tri" [  weight=0 ];
-
-	"Bul" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Bul" -- "Gre" [  weight=0 ];
-
-	"Bul" -- "Rum" [  weight=0 ];
-
-	"Bul" -- "Ser" [  weight=0 ];
-
-	"Bul" -- "Bul_ec" [  weight=0 ];
-
-	"Bul" -- "Bul_sc" [  weight=0 ];
-
-	"Bul" -- "Con" [  weight=0 ];
-
-	"ION" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"ION" -- "Gre" [  weight=0 ];
-
-	"ION" -- "Nap" [  weight=0 ];
-
-	"ION" -- "Tun" [  weight=0 ];
-
-	"ION" -- "ADR" [  weight=0 ];
-
-	"ION" -- "Alb" [  weight=0 ];
-
-	"ION" -- "EAS" [  weight=0 ];
-
-	"ION" -- "AEG" [  weight=0 ];
-
-	"ION" -- "TYS" [  weight=0 ];
-
-	"ION" -- "Apu" [  weight=0 ];
-
-	"Bre" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Bre" -- "Gas" [  weight=0 ];
-
-	"Bre" -- "MAO" [  weight=0 ];
-
-	"Bre" -- "Par" [  weight=0 ];
-
-	"Bre" -- "ENG" [  weight=0 ];
-
-	"Bre" -- "Pic" [  weight=0 ];
-
-	"Gal" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Gal" -- "Vie" [  weight=0 ];
-
-	"Gal" -- "Boh" [  weight=0 ];
-
-	"Gal" -- "Bud" [  weight=0 ];
-
-	"Gal" -- "Rum" [  weight=0 ];
-
-	"Gal" -- "Ukr" [  weight=0 ];
-
-	"Gal" -- "Sil" [  weight=0 ];
-
-	"Gal" -- "War" [  weight=0 ];
-
-	"BAR" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"BAR" -- "NWG" [  weight=0 ];
-
-	"BAR" -- "Nwy" [  weight=0 ];
-
-	"BAR" -- "Stp_nc" [  weight=0 ];
-
-	"BLA" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"BLA" -- "Bul_ec" [  weight=0 ];
-
-	"BLA" -- "Ank" [  weight=0 ];
-
-	"BLA" -- "Sev" [  weight=0 ];
-
-	"BLA" -- "Con" [  weight=0 ];
-
-	"BLA" -- "Rum" [  weight=0 ];
-
-	"BLA" -- "AEG" [  weight=0 ];
-
-	"BLA" -- "Arm" [  weight=0 ];
-
-	"Wal" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Wal" -- "Yor" [  weight=0 ];
-
-	"Wal" -- "Lvp" [  weight=0 ];
-
-	"Wal" -- "ENG" [  weight=0 ];
-
-	"Wal" -- "IRI" [  weight=0 ];
-
-	"Wal" -- "Lon" [  weight=0 ];
-
-	"ENG" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"ENG" -- "NTH" [  weight=0 ];
-
-	"ENG" -- "Wal" [  weight=0 ];
-
-	"ENG" -- "Pic" [  weight=0 ];
-
-	"ENG" -- "Bel" [  weight=0 ];
-
-	"ENG" -- "Bre" [  weight=0 ];
-
-	"ENG" -- "Lon" [  weight=0 ];
-
-	"ENG" -- "MAO" [  weight=0 ];
-
-	"ENG" -- "IRI" [  weight=0 ];
-
-	"Ank" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Ank" -- "BLA" [  weight=0 ];
-
-	"Ank" -- "Smy" [  weight=0 ];
-
-	"Ank" -- "Con" [  weight=0 ];
-
-	"Ank" -- "Arm" [  weight=0 ];
+	"Rum" -- "Gal" [  weight=0 ];
 
 	"WES" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"WES" -- "TYS" [  weight=0 ];
 
 	"WES" -- "Tun" [  weight=0 ];
 
@@ -271,33 +57,587 @@ strict graph {
 
 	"WES" -- "MAO" [  weight=0 ];
 
-	"WES" -- "TYS" [  weight=0 ];
+	"Tun" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Tun" -- "Naf" [  weight=0 ];
+
+	"Tun" -- "ION" [  weight=0 ];
+
+	"Tun" -- "TYS" [  weight=0 ];
+
+	"Tun" -- "WES" [  weight=0 ];
+
+	"Ber" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Ber" -- "Mun" [  weight=0 ];
+
+	"Ber" -- "BAL" [  weight=0 ];
+
+	"Ber" -- "Sil" [  weight=0 ];
+
+	"Ber" -- "Pru" [  weight=0 ];
+
+	"Ber" -- "Kie" [  weight=0 ];
+
+	"Ank" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Ank" -- "Arm" [  weight=0 ];
+
+	"Ank" -- "BLA" [  weight=0 ];
+
+	"Ank" -- "Con" [  weight=0 ];
+
+	"Ank" -- "Smy" [  weight=0 ];
 
 	"Tyr" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
+	"Tyr" -- "Mun" [  weight=0 ];
+
 	"Tyr" -- "Vie" [  weight=0 ];
+
+	"Tyr" -- "Ven" [  weight=0 ];
+
+	"Tyr" -- "Tri" [  weight=0 ];
 
 	"Tyr" -- "Pie" [  weight=0 ];
 
 	"Tyr" -- "Boh" [  weight=0 ];
 
-	"Tyr" -- "Ven" [  weight=0 ];
+	"Rom" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Tyr" -- "Mun" [  weight=0 ];
+	"Rom" -- "Ven" [  weight=0 ];
 
-	"Tyr" -- "Tri" [  weight=0 ];
+	"Rom" -- "Apu" [  weight=0 ];
 
-	"Arm" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+	"Rom" -- "Nap" [  weight=0 ];
 
-	"Arm" -- "BLA" [  weight=0 ];
+	"Rom" -- "TYS" [  weight=0 ];
 
-	"Arm" -- "Smy" [  weight=0 ];
+	"Rom" -- "Tus" [  weight=0 ];
 
-	"Arm" -- "Ank" [  weight=0 ];
+	"Tri" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Arm" -- "Sev" [  weight=0 ];
+	"Tri" -- "Alb" [  weight=0 ];
 
-	"Arm" -- "Syr" [  weight=0 ];
+	"Tri" -- "ADR" [  weight=0 ];
+
+	"Tri" -- "Bud" [  weight=0 ];
+
+	"Tri" -- "Ven" [  weight=0 ];
+
+	"Tri" -- "Tyr" [  weight=0 ];
+
+	"Tri" -- "Vie" [  weight=0 ];
+
+	"Tri" -- "Ser" [  weight=0 ];
+
+	"Boh" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Boh" -- "Tyr" [  weight=0 ];
+
+	"Boh" -- "Mun" [  weight=0 ];
+
+	"Boh" -- "Sil" [  weight=0 ];
+
+	"Boh" -- "Vie" [  weight=0 ];
+
+	"Boh" -- "Gal" [  weight=0 ];
+
+	"SKA" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"SKA" -- "NTH" [  weight=0 ];
+
+	"SKA" -- "Swe" [  weight=0 ];
+
+	"SKA" -- "BAL" [  weight=0 ];
+
+	"SKA" -- "Nwy" [  weight=0 ];
+
+	"SKA" -- "Den" [  weight=0 ];
+
+	"Alb" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Alb" -- "ION" [  weight=0 ];
+
+	"Alb" -- "ADR" [  weight=0 ];
+
+	"Alb" -- "Ser" [  weight=0 ];
+
+	"Alb" -- "Tri" [  weight=0 ];
+
+	"Alb" -- "Gre" [  weight=0 ];
+
+	"ENG" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"ENG" -- "Bre" [  weight=0 ];
+
+	"ENG" -- "IRI" [  weight=0 ];
+
+	"ENG" -- "Bel" [  weight=0 ];
+
+	"ENG" -- "Lon" [  weight=0 ];
+
+	"ENG" -- "MAO" [  weight=0 ];
+
+	"ENG" -- "NTH" [  weight=0 ];
+
+	"ENG" -- "Pic" [  weight=0 ];
+
+	"ENG" -- "Wal" [  weight=0 ];
+
+	"Lvp" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Lvp" -- "Edi" [  weight=0 ];
+
+	"Lvp" -- "IRI" [  weight=0 ];
+
+	"Lvp" -- "NAO" [  weight=0 ];
+
+	"Lvp" -- "Wal" [  weight=0 ];
+
+	"Lvp" -- "Cly" [  weight=0 ];
+
+	"Lvp" -- "Yor" [  weight=0 ];
+
+	"Sil" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Sil" -- "War" [  weight=0 ];
+
+	"Sil" -- "Pru" [  weight=0 ];
+
+	"Sil" -- "Gal" [  weight=0 ];
+
+	"Sil" -- "Ber" [  weight=0 ];
+
+	"Sil" -- "Boh" [  weight=0 ];
+
+	"Sil" -- "Mun" [  weight=0 ];
+
+	"IRI" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"IRI" -- "ENG" [  weight=0 ];
+
+	"IRI" -- "Lvp" [  weight=0 ];
+
+	"IRI" -- "MAO" [  weight=0 ];
+
+	"IRI" -- "NAO" [  weight=0 ];
+
+	"IRI" -- "Wal" [  weight=0 ];
+
+	"Hol" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Hol" -- "Bel" [  weight=0 ];
+
+	"Hol" -- "HEL" [  weight=0 ];
+
+	"Hol" -- "Ruh" [  weight=0 ];
+
+	"Hol" -- "Kie" [  weight=0 ];
+
+	"Hol" -- "NTH" [  weight=0 ];
+
+	"Swe" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Swe" -- "BOT" [  weight=0 ];
+
+	"Swe" -- "Den" [  weight=0 ];
+
+	"Swe" -- "BAL" [  weight=0 ];
+
+	"Swe" -- "Fin" [  weight=0 ];
+
+	"Swe" -- "SKA" [  weight=0 ];
+
+	"Swe" -- "Nwy" [  weight=0 ];
+
+	"NTH" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"NTH" -- "ENG" [  weight=0 ];
+
+	"NTH" -- "Edi" [  weight=0 ];
+
+	"NTH" -- "Bel" [  weight=0 ];
+
+	"NTH" -- "Yor" [  weight=0 ];
+
+	"NTH" -- "Den" [  weight=0 ];
+
+	"NTH" -- "Hol" [  weight=0 ];
+
+	"NTH" -- "HEL" [  weight=0 ];
+
+	"NTH" -- "SKA" [  weight=0 ];
+
+	"NTH" -- "Lon" [  weight=0 ];
+
+	"NTH" -- "Nwy" [  weight=0 ];
+
+	"NTH" -- "NWG" [  weight=0 ];
+
+	"Den" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Den" -- "NTH" [  weight=0 ];
+
+	"Den" -- "SKA" [  weight=0 ];
+
+	"Den" -- "BAL" [  weight=0 ];
+
+	"Den" -- "Kie" [  weight=0 ];
+
+	"Den" -- "Swe" [  weight=0 ];
+
+	"Den" -- "HEL" [  weight=0 ];
+
+	"Syr" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Syr" -- "Arm" [  weight=0 ];
+
+	"Syr" -- "EAS" [  weight=0 ];
+
+	"Syr" -- "Smy" [  weight=0 ];
+
+	"Sev" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Sev" -- "Mos" [  weight=0 ];
+
+	"Sev" -- "Arm" [  weight=0 ];
+
+	"Sev" -- "BLA" [  weight=0 ];
+
+	"Sev" -- "Rum" [  weight=0 ];
+
+	"Sev" -- "Ukr" [  weight=0 ];
+
+	"Nap" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Nap" -- "Apu" [  weight=0 ];
+
+	"Nap" -- "ION" [  weight=0 ];
+
+	"Nap" -- "TYS" [  weight=0 ];
+
+	"Nap" -- "Rom" [  weight=0 ];
+
+	"War" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"War" -- "Pru" [  weight=0 ];
+
+	"War" -- "Mos" [  weight=0 ];
+
+	"War" -- "Gal" [  weight=0 ];
+
+	"War" -- "Lvn" [  weight=0 ];
+
+	"War" -- "Ukr" [  weight=0 ];
+
+	"War" -- "Sil" [  weight=0 ];
+
+	"Spa_nc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Spa_nc" -- "Por" [  weight=0 ];
+
+	"Spa_nc" -- "MAO" [  weight=0 ];
+
+	"Spa_nc" -- "Gas" [  weight=0 ];
+
+	"Spa_nc" -- "Spa" [  weight=0 ];
+
+	"Bul" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Bul" -- "Rum" [  weight=0 ];
+
+	"Bul" -- "Bul_sc" [  weight=0 ];
+
+	"Bul" -- "Bul_ec" [  weight=0 ];
+
+	"Bul" -- "Ser" [  weight=0 ];
+
+	"Bul" -- "Con" [  weight=0 ];
+
+	"Bul" -- "Gre" [  weight=0 ];
+
+	"Cly" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Cly" -- "NAO" [  weight=0 ];
+
+	"Cly" -- "Lvp" [  weight=0 ];
+
+	"Cly" -- "Edi" [  weight=0 ];
+
+	"Cly" -- "NWG" [  weight=0 ];
+
+	"MAO" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"MAO" -- "NAO" [  weight=0 ];
+
+	"MAO" -- "Por" [  weight=0 ];
+
+	"MAO" -- "ENG" [  weight=0 ];
+
+	"MAO" -- "Spa_nc" [  weight=0 ];
+
+	"MAO" -- "WES" [  weight=0 ];
+
+	"MAO" -- "IRI" [  weight=0 ];
+
+	"MAO" -- "Gas" [  weight=0 ];
+
+	"MAO" -- "Bre" [  weight=0 ];
+
+	"MAO" -- "Naf" [  weight=0 ];
+
+	"Gre" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Gre" -- "Alb" [  weight=0 ];
+
+	"Gre" -- "Bul" [  weight=0 ];
+
+	"Gre" -- "Ser" [  weight=0 ];
+
+	"Gre" -- "AEG" [  weight=0 ];
+
+	"Gre" -- "Bul_sc" [  weight=0 ];
+
+	"Gre" -- "ION" [  weight=0 ];
+
+	"LYO" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"LYO" -- "Tus" [  weight=0 ];
+
+	"LYO" -- "Spa_sc" [  weight=0 ];
+
+	"LYO" -- "Mar" [  weight=0 ];
+
+	"LYO" -- "WES" [  weight=0 ];
+
+	"LYO" -- "Pie" [  weight=0 ];
+
+	"LYO" -- "TYS" [  weight=0 ];
+
+	"Wal" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Wal" -- "Yor" [  weight=0 ];
+
+	"Wal" -- "Lon" [  weight=0 ];
+
+	"Wal" -- "ENG" [  weight=0 ];
+
+	"Wal" -- "IRI" [  weight=0 ];
+
+	"Wal" -- "Lvp" [  weight=0 ];
+
+	"Nwy" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Nwy" -- "NTH" [  weight=0 ];
+
+	"Nwy" -- "SKA" [  weight=0 ];
+
+	"Nwy" -- "Stp" [  weight=0 ];
+
+	"Nwy" -- "NWG" [  weight=0 ];
+
+	"Nwy" -- "Stp_nc" [  weight=0 ];
+
+	"Nwy" -- "Swe" [  weight=0 ];
+
+	"Nwy" -- "BAR" [  weight=0 ];
+
+	"Nwy" -- "Fin" [  weight=0 ];
+
+	"Kie" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Kie" -- "Den" [  weight=0 ];
+
+	"Kie" -- "Mun" [  weight=0 ];
+
+	"Kie" -- "Ber" [  weight=0 ];
+
+	"Kie" -- "HEL" [  weight=0 ];
+
+	"Kie" -- "Hol" [  weight=0 ];
+
+	"Kie" -- "Ruh" [  weight=0 ];
+
+	"Kie" -- "BAL" [  weight=0 ];
+
+	"Bul_sc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Bul_sc" -- "Con" [  weight=0 ];
+
+	"Bul_sc" -- "Gre" [  weight=0 ];
+
+	"Bul_sc" -- "Bul" [  weight=0 ];
+
+	"Bul_sc" -- "AEG" [  weight=0 ];
+
+	"ION" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"ION" -- "Nap" [  weight=0 ];
+
+	"ION" -- "Apu" [  weight=0 ];
+
+	"ION" -- "Tun" [  weight=0 ];
+
+	"ION" -- "EAS" [  weight=0 ];
+
+	"ION" -- "ADR" [  weight=0 ];
+
+	"ION" -- "TYS" [  weight=0 ];
+
+	"ION" -- "Gre" [  weight=0 ];
+
+	"ION" -- "Alb" [  weight=0 ];
+
+	"ION" -- "AEG" [  weight=0 ];
+
+	"BAR" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"BAR" -- "Stp_nc" [  weight=0 ];
+
+	"BAR" -- "Nwy" [  weight=0 ];
+
+	"BAR" -- "NWG" [  weight=0 ];
+
+	"Gal" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Gal" -- "Boh" [  weight=0 ];
+
+	"Gal" -- "Sil" [  weight=0 ];
+
+	"Gal" -- "War" [  weight=0 ];
+
+	"Gal" -- "Ukr" [  weight=0 ];
+
+	"Gal" -- "Rum" [  weight=0 ];
+
+	"Gal" -- "Vie" [  weight=0 ];
+
+	"Gal" -- "Bud" [  weight=0 ];
+
+	"BAL" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"BAL" -- "Kie" [  weight=0 ];
+
+	"BAL" -- "Den" [  weight=0 ];
+
+	"BAL" -- "Ber" [  weight=0 ];
+
+	"BAL" -- "Swe" [  weight=0 ];
+
+	"BAL" -- "Pru" [  weight=0 ];
+
+	"BAL" -- "SKA" [  weight=0 ];
+
+	"BAL" -- "Lvn" [  weight=0 ];
+
+	"BAL" -- "BOT" [  weight=0 ];
+
+	"Yor" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Yor" -- "NTH" [  weight=0 ];
+
+	"Yor" -- "Wal" [  weight=0 ];
+
+	"Yor" -- "Lon" [  weight=0 ];
+
+	"Yor" -- "Edi" [  weight=0 ];
+
+	"Yor" -- "Lvp" [  weight=0 ];
+
+	"Mar" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Mar" -- "Spa_sc" [  weight=0 ];
+
+	"Mar" -- "Bur" [  weight=0 ];
+
+	"Mar" -- "Gas" [  weight=0 ];
+
+	"Mar" -- "LYO" [  weight=0 ];
+
+	"Mar" -- "Spa" [  weight=0 ];
+
+	"Mar" -- "Pie" [  weight=0 ];
+
+	"Tus" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Tus" -- "Rom" [  weight=0 ];
+
+	"Tus" -- "Pie" [  weight=0 ];
+
+	"Tus" -- "TYS" [  weight=0 ];
+
+	"Tus" -- "Ven" [  weight=0 ];
+
+	"Tus" -- "LYO" [  weight=0 ];
+
+	"Lon" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Lon" -- "NTH" [  weight=0 ];
+
+	"Lon" -- "ENG" [  weight=0 ];
+
+	"Lon" -- "Wal" [  weight=0 ];
+
+	"Lon" -- "Yor" [  weight=0 ];
+
+	"BOT" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"BOT" -- "Stp_sc" [  weight=0 ];
+
+	"BOT" -- "BAL" [  weight=0 ];
+
+	"BOT" -- "Fin" [  weight=0 ];
+
+	"BOT" -- "Lvn" [  weight=0 ];
+
+	"BOT" -- "Swe" [  weight=0 ];
+
+	"EAS" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"EAS" -- "Syr" [  weight=0 ];
+
+	"EAS" -- "Smy" [  weight=0 ];
+
+	"EAS" -- "AEG" [  weight=0 ];
+
+	"EAS" -- "ION" [  weight=0 ];
+
+	"HEL" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"HEL" -- "NTH" [  weight=0 ];
+
+	"HEL" -- "Hol" [  weight=0 ];
+
+	"HEL" -- "Kie" [  weight=0 ];
+
+	"HEL" -- "Den" [  weight=0 ];
+
+	"Ser" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Ser" -- "Tri" [  weight=0 ];
+
+	"Ser" -- "Bud" [  weight=0 ];
+
+	"Ser" -- "Gre" [  weight=0 ];
+
+	"Ser" -- "Rum" [  weight=0 ];
+
+	"Ser" -- "Alb" [  weight=0 ];
+
+	"Ser" -- "Bul" [  weight=0 ];
+
+	"Pru" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Pru" -- "Lvn" [  weight=0 ];
+
+	"Pru" -- "BAL" [  weight=0 ];
+
+	"Pru" -- "Ber" [  weight=0 ];
+
+	"Pru" -- "Sil" [  weight=0 ];
+
+	"Pru" -- "War" [  weight=0 ];
 
 	"Naf" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
@@ -307,431 +647,167 @@ strict graph {
 
 	"Naf" -- "WES" [  weight=0 ];
 
-	"Kie" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Bur" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Kie" -- "BAL" [  weight=0 ];
+	"Bur" -- "Gas" [  weight=0 ];
 
-	"Kie" -- "Mun" [  weight=0 ];
+	"Bur" -- "Mun" [  weight=0 ];
 
-	"Kie" -- "Ruh" [  weight=0 ];
+	"Bur" -- "Bel" [  weight=0 ];
 
-	"Kie" -- "Den" [  weight=0 ];
+	"Bur" -- "Par" [  weight=0 ];
 
-	"Kie" -- "Ber" [  weight=0 ];
+	"Bur" -- "Pic" [  weight=0 ];
 
-	"Kie" -- "HEL" [  weight=0 ];
+	"Bur" -- "Ruh" [  weight=0 ];
 
-	"Kie" -- "Hol" [  weight=0 ];
+	"Bur" -- "Mar" [  weight=0 ];
 
-	"Hol" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Fin" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Hol" -- "Ruh" [  weight=0 ];
+	"Fin" -- "Swe" [  weight=0 ];
 
-	"Hol" -- "HEL" [  weight=0 ];
+	"Fin" -- "Stp" [  weight=0 ];
 
-	"Hol" -- "Bel" [  weight=0 ];
+	"Fin" -- "Nwy" [  weight=0 ];
 
-	"Hol" -- "NTH" [  weight=0 ];
+	"Fin" -- "BOT" [  weight=0 ];
 
-	"Hol" -- "Kie" [  weight=0 ];
+	"Con" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Mun" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Con" -- "Smy" [  weight=0 ];
 
-	"Mun" -- "Tyr" [  weight=0 ];
+	"Con" -- "AEG" [  weight=0 ];
 
-	"Mun" -- "Ruh" [  weight=0 ];
+	"Con" -- "BLA" [  weight=0 ];
 
-	"Mun" -- "Ber" [  weight=0 ];
+	"Con" -- "Bul_sc" [  weight=0 ];
 
-	"Mun" -- "Boh" [  weight=0 ];
+	"Con" -- "Bul" [  weight=0 ];
 
-	"Mun" -- "Bur" [  weight=0 ];
+	"Con" -- "Ank" [  weight=0 ];
 
-	"Mun" -- "Kie" [  weight=0 ];
-
-	"Mun" -- "Sil" [  weight=0 ];
-
-	"BOT" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"BOT" -- "Lvn" [  weight=0 ];
-
-	"BOT" -- "Stp_sc" [  weight=0 ];
-
-	"BOT" -- "Swe" [  weight=0 ];
-
-	"BOT" -- "BAL" [  weight=0 ];
-
-	"BOT" -- "Fin" [  weight=0 ];
-
-	"Smy" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Smy" -- "Ank" [  weight=0 ];
-
-	"Smy" -- "Con" [  weight=0 ];
-
-	"Smy" -- "Syr" [  weight=0 ];
-
-	"Smy" -- "EAS" [  weight=0 ];
-
-	"Smy" -- "AEG" [  weight=0 ];
-
-	"Smy" -- "Arm" [  weight=0 ];
+	"Con" -- "Bul_ec" [  weight=0 ];
 
 	"AEG" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"AEG" -- "Smy" [  weight=0 ];
 
 	"AEG" -- "Con" [  weight=0 ];
 
 	"AEG" -- "EAS" [  weight=0 ];
 
-	"AEG" -- "ION" [  weight=0 ];
-
-	"AEG" -- "Smy" [  weight=0 ];
-
 	"AEG" -- "BLA" [  weight=0 ];
+
+	"AEG" -- "ION" [  weight=0 ];
 
 	"AEG" -- "Bul_sc" [  weight=0 ];
 
 	"AEG" -- "Gre" [  weight=0 ];
 
-	"NTH" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"NTH" -- "Bel" [  weight=0 ];
-
-	"NTH" -- "NWG" [  weight=0 ];
-
-	"NTH" -- "Den" [  weight=0 ];
-
-	"NTH" -- "Nwy" [  weight=0 ];
-
-	"NTH" -- "ENG" [  weight=0 ];
-
-	"NTH" -- "SKA" [  weight=0 ];
-
-	"NTH" -- "HEL" [  weight=0 ];
-
-	"NTH" -- "Lon" [  weight=0 ];
-
-	"NTH" -- "Edi" [  weight=0 ];
-
-	"NTH" -- "Hol" [  weight=0 ];
-
-	"NTH" -- "Yor" [  weight=0 ];
-
-	"Spa_sc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Spa_sc" -- "MAO" [  weight=0 ];
-
-	"Spa_sc" -- "Mar" [  weight=0 ];
-
-	"Spa_sc" -- "Spa" [  weight=0 ];
-
-	"Spa_sc" -- "LYO" [  weight=0 ];
-
-	"Spa_sc" -- "WES" [  weight=0 ];
-
-	"HEL" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"HEL" -- "Kie" [  weight=0 ];
-
-	"HEL" -- "Den" [  weight=0 ];
-
-	"HEL" -- "Hol" [  weight=0 ];
-
-	"HEL" -- "NTH" [  weight=0 ];
-
-	"Stp" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Stp" -- "Lvn" [  weight=0 ];
-
-	"Stp" -- "Nwy" [  weight=0 ];
-
-	"Stp" -- "Stp_nc" [  weight=0 ];
-
-	"Stp" -- "Stp_sc" [  weight=0 ];
-
-	"Stp" -- "Fin" [  weight=0 ];
-
-	"Stp" -- "Mos" [  weight=0 ];
-
-	"Cly" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Cly" -- "Lvp" [  weight=0 ];
-
-	"Cly" -- "Edi" [  weight=0 ];
-
-	"Cly" -- "NAO" [  weight=0 ];
-
-	"Cly" -- "NWG" [  weight=0 ];
-
-	"Spa" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Spa" -- "Spa_nc" [  weight=0 ];
-
-	"Spa" -- "Gas" [  weight=0 ];
-
-	"Spa" -- "Spa_sc" [  weight=0 ];
-
-	"Spa" -- "Mar" [  weight=0 ];
-
-	"Spa" -- "Por" [  weight=0 ];
-
-	"Rum" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Rum" -- "Bud" [  weight=0 ];
-
-	"Rum" -- "Bul" [  weight=0 ];
-
-	"Rum" -- "Ukr" [  weight=0 ];
-
-	"Rum" -- "Bul_ec" [  weight=0 ];
-
-	"Rum" -- "Gal" [  weight=0 ];
-
-	"Rum" -- "Ser" [  weight=0 ];
-
-	"Rum" -- "Sev" [  weight=0 ];
-
-	"Rum" -- "BLA" [  weight=0 ];
-
-	"SKA" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"SKA" -- "BAL" [  weight=0 ];
-
-	"SKA" -- "Den" [  weight=0 ];
-
-	"SKA" -- "NTH" [  weight=0 ];
-
-	"SKA" -- "Nwy" [  weight=0 ];
-
-	"SKA" -- "Swe" [  weight=0 ];
-
-	"Lvn" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Lvn" -- "BOT" [  weight=0 ];
-
-	"Lvn" -- "Stp_sc" [  weight=0 ];
-
-	"Lvn" -- "Stp" [  weight=0 ];
-
-	"Lvn" -- "Mos" [  weight=0 ];
-
-	"Lvn" -- "War" [  weight=0 ];
-
-	"Lvn" -- "Pru" [  weight=0 ];
-
-	"Lvn" -- "BAL" [  weight=0 ];
-
-	"Swe" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Swe" -- "BAL" [  weight=0 ];
-
-	"Swe" -- "BOT" [  weight=0 ];
-
-	"Swe" -- "Den" [  weight=0 ];
-
-	"Swe" -- "SKA" [  weight=0 ];
-
-	"Swe" -- "Fin" [  weight=0 ];
-
-	"Swe" -- "Nwy" [  weight=0 ];
-
-	"Ber" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Ber" -- "Mun" [  weight=0 ];
-
-	"Ber" -- "Sil" [  weight=0 ];
-
-	"Ber" -- "Pru" [  weight=0 ];
-
-	"Ber" -- "BAL" [  weight=0 ];
-
-	"Ber" -- "Kie" [  weight=0 ];
-
-	"Tun" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Tun" -- "TYS" [  weight=0 ];
-
-	"Tun" -- "WES" [  weight=0 ];
-
-	"Tun" -- "Naf" [  weight=0 ];
-
-	"Tun" -- "ION" [  weight=0 ];
-
 	"Ven" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Ven" -- "Tus" [  weight=0 ];
+
+	"Ven" -- "Tri" [  weight=0 ];
+
+	"Ven" -- "Rom" [  weight=0 ];
 
 	"Ven" -- "Tyr" [  weight=0 ];
 
 	"Ven" -- "ADR" [  weight=0 ];
 
-	"Ven" -- "Pie" [  weight=0 ];
-
-	"Ven" -- "Rom" [  weight=0 ];
-
-	"Ven" -- "Tus" [  weight=0 ];
-
 	"Ven" -- "Apu" [  weight=0 ];
 
-	"Ven" -- "Tri" [  weight=0 ];
+	"Ven" -- "Pie" [  weight=0 ];
 
-	"Spa_nc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Bul_ec" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Spa_nc" -- "Por" [  weight=0 ];
+	"Bul_ec" -- "Rum" [  weight=0 ];
 
-	"Spa_nc" -- "Spa" [  weight=0 ];
+	"Bul_ec" -- "BLA" [  weight=0 ];
 
-	"Spa_nc" -- "MAO" [  weight=0 ];
+	"Bul_ec" -- "Bul" [  weight=0 ];
 
-	"Spa_nc" -- "Gas" [  weight=0 ];
+	"Bul_ec" -- "Con" [  weight=0 ];
 
-	"Vie" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Bel" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Vie" -- "Tri" [  weight=0 ];
+	"Bel" -- "ENG" [  weight=0 ];
 
-	"Vie" -- "Gal" [  weight=0 ];
+	"Bel" -- "Hol" [  weight=0 ];
 
-	"Vie" -- "Tyr" [  weight=0 ];
+	"Bel" -- "Ruh" [  weight=0 ];
 
-	"Vie" -- "Boh" [  weight=0 ];
+	"Bel" -- "Bur" [  weight=0 ];
 
-	"Vie" -- "Bud" [  weight=0 ];
+	"Bel" -- "NTH" [  weight=0 ];
 
-	"TYS" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Bel" -- "Pic" [  weight=0 ];
 
-	"TYS" -- "LYO" [  weight=0 ];
+	"Spa_sc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
-	"TYS" -- "WES" [  weight=0 ];
+	"Spa_sc" -- "Spa" [  weight=0 ];
 
-	"TYS" -- "Nap" [  weight=0 ];
+	"Spa_sc" -- "WES" [  weight=0 ];
 
-	"TYS" -- "ION" [  weight=0 ];
+	"Spa_sc" -- "Mar" [  weight=0 ];
 
-	"TYS" -- "Tus" [  weight=0 ];
+	"Spa_sc" -- "LYO" [  weight=0 ];
 
-	"TYS" -- "Rom" [  weight=0 ];
+	"Bud" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"TYS" -- "Tun" [  weight=0 ];
+	"Bud" -- "Vie" [  weight=0 ];
 
-	"MAO" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Bud" -- "Gal" [  weight=0 ];
 
-	"MAO" -- "NAO" [  weight=0 ];
+	"Bud" -- "Rum" [  weight=0 ];
 
-	"MAO" -- "Gas" [  weight=0 ];
+	"Bud" -- "Ser" [  weight=0 ];
 
-	"MAO" -- "WES" [  weight=0 ];
+	"Bud" -- "Tri" [  weight=0 ];
 
-	"MAO" -- "Naf" [  weight=0 ];
+	"NAO" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
-	"MAO" -- "Por" [  weight=0 ];
+	"NAO" -- "Cly" [  weight=0 ];
 
-	"MAO" -- "Spa_sc" [  weight=0 ];
+	"NAO" -- "NWG" [  weight=0 ];
 
-	"MAO" -- "IRI" [  weight=0 ];
+	"NAO" -- "IRI" [  weight=0 ];
 
-	"MAO" -- "Bre" [  weight=0 ];
+	"NAO" -- "Lvp" [  weight=0 ];
 
-	"MAO" -- "ENG" [  weight=0 ];
+	"NAO" -- "MAO" [  weight=0 ];
 
-	"MAO" -- "Spa_nc" [  weight=0 ];
+	"Ukr" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Boh" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+	"Ukr" -- "War" [  weight=0 ];
 
-	"Boh" -- "Vie" [  weight=0 ];
+	"Ukr" -- "Rum" [  weight=0 ];
 
-	"Boh" -- "Tyr" [  weight=0 ];
+	"Ukr" -- "Sev" [  weight=0 ];
 
-	"Boh" -- "Mun" [  weight=0 ];
+	"Ukr" -- "Mos" [  weight=0 ];
 
-	"Boh" -- "Sil" [  weight=0 ];
+	"Ukr" -- "Gal" [  weight=0 ];
 
-	"Boh" -- "Gal" [  weight=0 ];
+	"Smy" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Ser" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Smy" -- "Con" [  weight=0 ];
 
-	"Ser" -- "Gre" [  weight=0 ];
+	"Smy" -- "EAS" [  weight=0 ];
 
-	"Ser" -- "Bud" [  weight=0 ];
+	"Smy" -- "Syr" [  weight=0 ];
 
-	"Ser" -- "Rum" [  weight=0 ];
+	"Smy" -- "Arm" [  weight=0 ];
 
-	"Ser" -- "Bul" [  weight=0 ];
+	"Smy" -- "AEG" [  weight=0 ];
 
-	"Ser" -- "Alb" [  weight=0 ];
-
-	"Ser" -- "Tri" [  weight=0 ];
-
-	"Sev" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Sev" -- "Mos" [  weight=0 ];
-
-	"Sev" -- "Ukr" [  weight=0 ];
-
-	"Sev" -- "Arm" [  weight=0 ];
-
-	"Sev" -- "BLA" [  weight=0 ];
-
-	"Sev" -- "Rum" [  weight=0 ];
-
-	"Tri" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Tri" -- "Vie" [  weight=0 ];
-
-	"Tri" -- "Bud" [  weight=0 ];
-
-	"Tri" -- "Ser" [  weight=0 ];
-
-	"Tri" -- "Alb" [  weight=0 ];
-
-	"Tri" -- "ADR" [  weight=0 ];
-
-	"Tri" -- "Ven" [  weight=0 ];
-
-	"Tri" -- "Tyr" [  weight=0 ];
-
-	"Stp_sc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Stp_sc" -- "Stp" [  weight=0 ];
-
-	"Stp_sc" -- "BOT" [  weight=0 ];
-
-	"Stp_sc" -- "Lvn" [  weight=0 ];
-
-	"Tus" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Tus" -- "Pie" [  weight=0 ];
-
-	"Tus" -- "Rom" [  weight=0 ];
-
-	"Tus" -- "TYS" [  weight=0 ];
-
-	"Tus" -- "Ven" [  weight=0 ];
-
-	"Tus" -- "LYO" [  weight=0 ];
-
-	"Sil" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Sil" -- "Gal" [  weight=0 ];
-
-	"Sil" -- "War" [  weight=0 ];
-
-	"Sil" -- "Ber" [  weight=0 ];
-
-	"Sil" -- "Boh" [  weight=0 ];
-
-	"Sil" -- "Pru" [  weight=0 ];
-
-	"Sil" -- "Mun" [  weight=0 ];
-
-	"Nap" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Nap" -- "Rom" [  weight=0 ];
-
-	"Nap" -- "TYS" [  weight=0 ];
-
-	"Nap" -- "ION" [  weight=0 ];
-
-	"Nap" -- "Apu" [  weight=0 ];
+	"Smy" -- "Ank" [  weight=0 ];
 
 	"Ruh" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Ruh" -- "Mun" [  weight=0 ];
 
 	"Ruh" -- "Bel" [  weight=0 ];
 
@@ -741,63 +817,135 @@ strict graph {
 
 	"Ruh" -- "Kie" [  weight=0 ];
 
-	"Ruh" -- "Mun" [  weight=0 ];
+	"Spa" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Gre" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Spa" -- "Spa_sc" [  weight=0 ];
 
-	"Gre" -- "ION" [  weight=0 ];
+	"Spa" -- "Gas" [  weight=0 ];
 
-	"Gre" -- "Bul" [  weight=0 ];
+	"Spa" -- "Mar" [  weight=0 ];
 
-	"Gre" -- "Alb" [  weight=0 ];
+	"Spa" -- "Por" [  weight=0 ];
 
-	"Gre" -- "Bul_sc" [  weight=0 ];
+	"Spa" -- "Spa_nc" [  weight=0 ];
 
-	"Gre" -- "AEG" [  weight=0 ];
+	"Stp_sc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Gre" -- "Ser" [  weight=0 ];
+	"Stp_sc" -- "Lvn" [  weight=0 ];
+
+	"Stp_sc" -- "BOT" [  weight=0 ];
+
+	"Stp_sc" -- "Stp" [  weight=0 ];
+
+	"TYS" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"TYS" -- "LYO" [  weight=0 ];
+
+	"TYS" -- "Nap" [  weight=0 ];
+
+	"TYS" -- "Rom" [  weight=0 ];
+
+	"TYS" -- "WES" [  weight=0 ];
+
+	"TYS" -- "ION" [  weight=0 ];
+
+	"TYS" -- "Tun" [  weight=0 ];
+
+	"TYS" -- "Tus" [  weight=0 ];
 
 	"Gas" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Gas" -- "Par" [  weight=0 ];
+
+	"Gas" -- "Spa_nc" [  weight=0 ];
+
+	"Gas" -- "Spa" [  weight=0 ];
 
 	"Gas" -- "Bre" [  weight=0 ];
 
 	"Gas" -- "Bur" [  weight=0 ];
 
-	"Gas" -- "MAO" [  weight=0 ];
-
 	"Gas" -- "Mar" [  weight=0 ];
 
-	"Gas" -- "Par" [  weight=0 ];
+	"Gas" -- "MAO" [  weight=0 ];
 
-	"Gas" -- "Spa" [  weight=0 ];
+	"Bre" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Gas" -- "Spa_nc" [  weight=0 ];
+	"Bre" -- "ENG" [  weight=0 ];
+
+	"Bre" -- "Gas" [  weight=0 ];
+
+	"Bre" -- "MAO" [  weight=0 ];
+
+	"Bre" -- "Par" [  weight=0 ];
+
+	"Bre" -- "Pic" [  weight=0 ];
 
 	"Edi" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Edi" -- "NTH" [  weight=0 ];
+	"Edi" -- "Lvp" [  weight=0 ];
 
-	"Edi" -- "NWG" [  weight=0 ];
+	"Edi" -- "NTH" [  weight=0 ];
 
 	"Edi" -- "Yor" [  weight=0 ];
 
-	"Edi" -- "Lvp" [  weight=0 ];
+	"Edi" -- "NWG" [  weight=0 ];
 
 	"Edi" -- "Cly" [  weight=0 ];
 
-	"ADR" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Apu" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
-	"ADR" -- "Ven" [  weight=0 ];
+	"Apu" -- "ION" [  weight=0 ];
 
-	"ADR" -- "ION" [  weight=0 ];
+	"Apu" -- "ADR" [  weight=0 ];
 
-	"ADR" -- "Apu" [  weight=0 ];
+	"Apu" -- "Ven" [  weight=0 ];
 
-	"ADR" -- "Alb" [  weight=0 ];
+	"Apu" -- "Nap" [  weight=0 ];
 
-	"ADR" -- "Tri" [  weight=0 ];
+	"Apu" -- "Rom" [  weight=0 ];
+
+	"Pic" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Pic" -- "Bel" [  weight=0 ];
+
+	"Pic" -- "ENG" [  weight=0 ];
+
+	"Pic" -- "Bre" [  weight=0 ];
+
+	"Pic" -- "Bur" [  weight=0 ];
+
+	"Pic" -- "Par" [  weight=0 ];
+
+	"Stp_nc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Stp_nc" -- "Stp" [  weight=0 ];
+
+	"Stp_nc" -- "Nwy" [  weight=0 ];
+
+	"Stp_nc" -- "BAR" [  weight=0 ];
+
+	"BLA" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"BLA" -- "Rum" [  weight=0 ];
+
+	"BLA" -- "Sev" [  weight=0 ];
+
+	"BLA" -- "Ank" [  weight=0 ];
+
+	"BLA" -- "Bul_ec" [  weight=0 ];
+
+	"BLA" -- "Arm" [  weight=0 ];
+
+	"BLA" -- "AEG" [  weight=0 ];
+
+	"BLA" -- "Con" [  weight=0 ];
 
 	"Pie" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+
+	"Pie" -- "Ven" [  weight=0 ];
+
+	"Pie" -- "Tus" [  weight=0 ];
 
 	"Pie" -- "LYO" [  weight=0 ];
 
@@ -805,250 +953,106 @@ strict graph {
 
 	"Pie" -- "Tyr" [  weight=0 ];
 
-	"Pie" -- "Ven" [  weight=0 ];
-
-	"Pie" -- "Tus" [  weight=0 ];
-
-	"Bel" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Bel" -- "Bur" [  weight=0 ];
-
-	"Bel" -- "Hol" [  weight=0 ];
-
-	"Bel" -- "ENG" [  weight=0 ];
-
-	"Bel" -- "NTH" [  weight=0 ];
-
-	"Bel" -- "Pic" [  weight=0 ];
-
-	"Bel" -- "Ruh" [  weight=0 ];
-
-	"Bul_sc" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Bul_sc" -- "AEG" [  weight=0 ];
-
-	"Bul_sc" -- "Gre" [  weight=0 ];
-
-	"Bul_sc" -- "Bul" [  weight=0 ];
-
-	"Rom" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Rom" -- "Nap" [  weight=0 ];
-
-	"Rom" -- "Tus" [  weight=0 ];
-
-	"Rom" -- "Apu" [  weight=0 ];
-
-	"Rom" -- "TYS" [  weight=0 ];
-
-	"Rom" -- "Ven" [  weight=0 ];
-
-	"Den" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Den" -- "Swe" [  weight=0 ];
-
-	"Den" -- "BAL" [  weight=0 ];
-
-	"Den" -- "HEL" [  weight=0 ];
-
-	"Den" -- "Kie" [  weight=0 ];
-
-	"Den" -- "NTH" [  weight=0 ];
-
-	"Den" -- "SKA" [  weight=0 ];
-
 	"Par" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Par" -- "Bre" [  weight=0 ];
-
-	"Par" -- "Pic" [  weight=0 ];
 
 	"Par" -- "Gas" [  weight=0 ];
 
 	"Par" -- "Bur" [  weight=0 ];
 
-	"LYO" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Par" -- "Pic" [  weight=0 ];
 
-	"LYO" -- "Mar" [  weight=0 ];
-
-	"LYO" -- "Pie" [  weight=0 ];
-
-	"LYO" -- "TYS" [  weight=0 ];
-
-	"LYO" -- "WES" [  weight=0 ];
-
-	"LYO" -- "Tus" [  weight=0 ];
-
-	"LYO" -- "Spa_sc" [  weight=0 ];
-
-	"Con" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Con" -- "AEG" [  weight=0 ];
-
-	"Con" -- "Ank" [  weight=0 ];
-
-	"Con" -- "BLA" [  weight=0 ];
-
-	"Con" -- "Smy" [  weight=0 ];
-
-	"Con" -- "Bul" [  weight=0 ];
+	"Par" -- "Bre" [  weight=0 ];
 
 	"Por" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Por" -- "Spa" [  weight=0 ];
+	"Por" -- "MAO" [  weight=0 ];
 
 	"Por" -- "Spa_nc" [  weight=0 ];
 
-	"Por" -- "MAO" [  weight=0 ];
+	"Por" -- "Spa" [  weight=0 ];
 
-	"Nwy" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
+	"Mun" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Nwy" -- "NTH" [  weight=0 ];
+	"Mun" -- "Bur" [  weight=0 ];
 
-	"Nwy" -- "Stp_nc" [  weight=0 ];
+	"Mun" -- "Kie" [  weight=0 ];
 
-	"Nwy" -- "Swe" [  weight=0 ];
+	"Mun" -- "Tyr" [  weight=0 ];
 
-	"Nwy" -- "Stp" [  weight=0 ];
+	"Mun" -- "Boh" [  weight=0 ];
 
-	"Nwy" -- "SKA" [  weight=0 ];
+	"Mun" -- "Ber" [  weight=0 ];
 
-	"Nwy" -- "BAR" [  weight=0 ];
+	"Mun" -- "Sil" [  weight=0 ];
 
-	"Nwy" -- "NWG" [  weight=0 ];
+	"Mun" -- "Ruh" [  weight=0 ];
 
-	"Nwy" -- "Fin" [  weight=0 ];
+	"Stp" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"EAS" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Stp" -- "Stp_sc" [  weight=0 ];
 
-	"EAS" -- "AEG" [  weight=0 ];
+	"Stp" -- "Fin" [  weight=0 ];
 
-	"EAS" -- "Smy" [  weight=0 ];
+	"Stp" -- "Nwy" [  weight=0 ];
 
-	"EAS" -- "Syr" [  weight=0 ];
+	"Stp" -- "Lvn" [  weight=0 ];
 
-	"EAS" -- "ION" [  weight=0 ];
+	"Stp" -- "Mos" [  weight=0 ];
+
+	"Stp" -- "Stp_nc" [  weight=0 ];
 
 	"NWG" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
 	"NWG" -- "BAR" [  weight=0 ];
 
-	"NWG" -- "Nwy" [  weight=0 ];
+	"NWG" -- "Cly" [  weight=0 ];
+
+	"NWG" -- "Edi" [  weight=0 ];
 
 	"NWG" -- "NAO" [  weight=0 ];
 
 	"NWG" -- "NTH" [  weight=0 ];
 
-	"NWG" -- "Edi" [  weight=0 ];
+	"NWG" -- "Nwy" [  weight=0 ];
 
-	"NWG" -- "Cly" [  weight=0 ];
+	"Lvn" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Bul_ec" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Lvn" -- "BAL" [  weight=0 ];
 
-	"Bul_ec" -- "BLA" [  weight=0 ];
+	"Lvn" -- "Mos" [  weight=0 ];
 
-	"Bul_ec" -- "Rum" [  weight=0 ];
+	"Lvn" -- "Pru" [  weight=0 ];
 
-	"Bul_ec" -- "Bul" [  weight=0 ];
+	"Lvn" -- "Stp" [  weight=0 ];
 
-	"IRI" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Lvn" -- "BOT" [  weight=0 ];
 
-	"IRI" -- "ENG" [  weight=0 ];
+	"Lvn" -- "Stp_sc" [  weight=0 ];
 
-	"IRI" -- "MAO" [  weight=0 ];
+	"Lvn" -- "War" [  weight=0 ];
 
-	"IRI" -- "NAO" [  weight=0 ];
+	"Vie" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
 
-	"IRI" -- "Wal" [  weight=0 ];
+	"Vie" -- "Tyr" [  weight=0 ];
 
-	"IRI" -- "Lvp" [  weight=0 ];
+	"Vie" -- "Boh" [  weight=0 ];
 
-	"Syr" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+	"Vie" -- "Gal" [  weight=0 ];
 
-	"Syr" -- "Smy" [  weight=0 ];
+	"Vie" -- "Tri" [  weight=0 ];
 
-	"Syr" -- "Arm" [  weight=0 ];
+	"Vie" -- "Bud" [  weight=0 ];
 
-	"Syr" -- "EAS" [  weight=0 ];
+	"Arm" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Pic" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
+	"Arm" -- "Sev" [  weight=0 ];
 
-	"Pic" -- "Bur" [  weight=0 ];
+	"Arm" -- "Smy" [  weight=0 ];
 
-	"Pic" -- "ENG" [  weight=0 ];
+	"Arm" -- "Syr" [  weight=0 ];
 
-	"Pic" -- "Par" [  weight=0 ];
+	"Arm" -- "Ank" [  weight=0 ];
 
-	"Pic" -- "Bel" [  weight=0 ];
-
-	"Pic" -- "Bre" [  weight=0 ];
-
-	"Mar" [ color="2", colorscheme="greens3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Mar" -- "Bur" [  weight=0 ];
-
-	"Mar" -- "Spa_sc" [  weight=0 ];
-
-	"Mar" -- "Spa" [  weight=0 ];
-
-	"Mar" -- "LYO" [  weight=0 ];
-
-	"Mar" -- "Pie" [  weight=0 ];
-
-	"Mar" -- "Gas" [  weight=0 ];
-
-	"Yor" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Yor" -- "Lon" [  weight=0 ];
-
-	"Yor" -- "Lvp" [  weight=0 ];
-
-	"Yor" -- "NTH" [  weight=0 ];
-
-	"Yor" -- "Wal" [  weight=0 ];
-
-	"Yor" -- "Edi" [  weight=0 ];
-
-	"Apu" [ color="2", colorscheme="purples3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Apu" -- "ION" [  weight=0 ];
-
-	"Apu" -- "Nap" [  weight=0 ];
-
-	"Apu" -- "Rom" [  weight=0 ];
-
-	"Apu" -- "Ven" [  weight=0 ];
-
-	"Apu" -- "ADR" [  weight=0 ];
-
-	"BAL" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"BAL" -- "Swe" [  weight=0 ];
-
-	"BAL" -- "Kie" [  weight=0 ];
-
-	"BAL" -- "Den" [  weight=0 ];
-
-	"BAL" -- "SKA" [  weight=0 ];
-
-	"BAL" -- "Ber" [  weight=0 ];
-
-	"BAL" -- "Lvn" [  weight=0 ];
-
-	"BAL" -- "Pru" [  weight=0 ];
-
-	"BAL" -- "BOT" [  weight=0 ];
-
-	"NAO" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"NAO" -- "MAO" [  weight=0 ];
-
-	"NAO" -- "NWG" [  weight=0 ];
-
-	"NAO" -- "Lvp" [  weight=0 ];
-
-	"NAO" -- "Cly" [  weight=0 ];
-
-	"NAO" -- "IRI" [  weight=0 ];
+	"Arm" -- "BLA" [  weight=0 ];
 
 }

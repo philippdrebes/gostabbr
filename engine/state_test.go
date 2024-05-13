@@ -172,10 +172,6 @@ func TestAddOrder_InvalidDestination(t *testing.T) {
 func TestAdjudicate_WithOrders(t *testing.T) {
 	s := setupStateWithGraph()
 
-	// Manually add orders to the countries for testing
-	// s.Countries[0].orders = append(s.Countries[0].orders, &HoldOrder{Position: &Province{Key: "Paris"}})
-	// s.Countries[1].orders = append(s.Countries[1].orders, &MoveOrder{Position: &Province{Key: "Berlin"}, Dest: &Province{Key: "Munich"}})
-
 	err := s.AddHoldOrder("France", "Paris")
 	assert.NoError(t, err, "AddMoveOrder should complete without errors")
 	err = s.AddMoveOrder("Germany", "Berlin", "Munich")
@@ -184,8 +180,13 @@ func TestAdjudicate_WithOrders(t *testing.T) {
 	err = s.Adjudicate()
 	assert.NoError(t, err, "Adjudicate should complete without error with orders")
 
-	// We cannot directly test log outputs or the internal state of `orders` slice without additional output from Adjudicate.
-	// If `orders` affected state, you'd check that state here.
-	// For example:
-	// assert.Equal(t, 2, len(collectedOrders), "Should collect all orders from countries")
+	par, err := s.World.GetProvince("Paris")
+	assert.Nil(t, err)
+	assert.NotNil(t, par.Unit)
+
+	ber, err := s.World.GetProvince("Berlin")
+	mun, err := s.World.GetProvince("Munich")
+	assert.Nil(t, err)
+	assert.Nil(t, ber.Unit)
+	assert.NotNil(t, mun.Unit)
 }

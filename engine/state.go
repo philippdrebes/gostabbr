@@ -2,7 +2,9 @@ package engine
 
 import (
 	"errors"
+	"fmt"
 	"log"
+	"reflect"
 )
 
 type Turn int8
@@ -177,17 +179,31 @@ func (s *State) Adjudicate() error {
 		if country == nil {
 			continue
 		}
-		log.Printf("Processing %ss orders", country.Name)
+		log.Printf("Collecting %ss orders", country.Name)
 		for _, order := range country.orders {
 			if order == nil {
 				continue
 			}
-			log.Printf("Processing order %s", order)
 			orders = append(orders, order)
 		}
 	}
 
 	log.Printf("Processing %d orders in total", len(orders))
+	for _, order := range orders {
+		log.Printf("Processing order %s", order)
+		switch o := order.(type) {
+		case *HoldOrder:
+			log.Printf("%s", o)
+		case *MoveOrder:
+			log.Printf("%s", o)
+			err := o.Move()
+			if err != nil {
+				return err
+			}
+		default:
+			return errors.New(fmt.Sprintf("Type %s is not supported", reflect.TypeOf(o)))
+		}
+	}
 
 	// return s.nextPhase()
 	return nil

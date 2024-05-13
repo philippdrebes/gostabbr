@@ -1,6 +1,9 @@
 package engine
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Order interface {
 	fmt.Stringer
@@ -42,6 +45,15 @@ func (m MoveOrder) String() string {
 
 func (m MoveOrder) GetPosition() *Province {
 	return m.Position
+}
+
+func (m MoveOrder) Move() error {
+	if m.Dest.Unit != nil {
+		return errors.New("Destination occupied")
+	}
+	m.Dest.Unit = m.Position.Unit
+	m.Position.Unit = nil
+	return nil
 }
 
 func (s SupportOrder) String() string {

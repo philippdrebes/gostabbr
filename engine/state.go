@@ -208,3 +208,16 @@ func (s *State) Adjudicate() error {
 	// return s.nextPhase()
 	return nil
 }
+
+func calculateStrength(order Order, world *Graph) int {
+	src := order.GetSource()
+	dest := order.GetDestination()
+
+	if move, ok := order.(MoveOrder); ok {
+		// if move: get neighbors of destination and check for supporting orders
+	} else {
+		// if hold, support or convoy: get neighbors of source and check for supporting orders
+	}
+
+	return 1
+}

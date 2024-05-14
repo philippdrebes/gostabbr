@@ -58,7 +58,10 @@ func (s *State) AddHoldOrder(country string, position string) error {
 		return err
 	}
 
-	c.addOrder(&HoldOrder{Position: pos})
+	err = s.addOrder(c, &HoldOrder{Position: pos})
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -78,7 +81,10 @@ func (s *State) AddMoveOrder(country, position, destination string) error {
 	if err != nil {
 		return err
 	}
-	c.addOrder(&MoveOrder{Position: pos, Dest: dest})
+	err = s.addOrder(c, &MoveOrder{Position: pos, Dest: dest})
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -103,7 +109,10 @@ func (s *State) AddSupportOrder(country, position, source, destination string) e
 	if err != nil {
 		return err
 	}
-	c.addOrder(&SupportOrder{Position: pos, Src: src, Dest: dest})
+	err = s.addOrder(c, &SupportOrder{Position: pos, Src: src, Dest: dest})
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -128,24 +137,29 @@ func (s *State) AddConvoyOrder(country, position, source, destination string) er
 	if err != nil {
 		return err
 	}
-	c.addOrder(&ConvoyOrder{Position: pos, Src: src, Dest: dest})
+	err = s.addOrder(c, &ConvoyOrder{Position: pos, Src: src, Dest: dest})
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
 
-func (c *Country) addOrder(newOrder Order) {
-	if c.orders == nil {
-		c.orders = []Order{}
+func (s *State) addOrder(country *Country, newOrder Order) error {
+	if country.orders == nil {
+		country.orders = []Order{}
 	}
 
-	for index, existing := range c.orders {
+	for index, existing := range country.orders {
 		if newOrder.GetPosition().Key == existing.GetPosition().Key {
-			c.orders[index] = newOrder
-			return
+			country.orders[index] = newOrder
+			return nil // todo: do not return
 		}
 	}
 
-	c.orders = append(c.orders, newOrder)
+	country.orders = append(country.orders, newOrder)
+
+	return nil
 }
 
 func (s *State) nextPhase() error {

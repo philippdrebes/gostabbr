@@ -1,19 +1,19 @@
 package engine
 
 func InitializeNewGame() (*State, error) {
+	austria := &Country{Name: "Austria", HomeCenters: []string{"Vie", "Bud", "Tri"}}
+	england := &Country{Name: "England", HomeCenters: []string{"Lon", "Edi", "Lvp"}}
+	france := &Country{Name: "France", HomeCenters: []string{"Par", "Mar", "Bre"}}
+	germany := &Country{Name: "Germany", HomeCenters: []string{"Ber", "Mun", "Kie"}}
+	italy := &Country{Name: "Italy", HomeCenters: []string{"Rom", "Ven", "Nap"}}
+	russia := &Country{Name: "Russia", HomeCenters: []string{"Mos", "Sev", "War", "Stp_sc"}}
+	turkey := &Country{Name: "Turkey", HomeCenters: []string{"Ank", "Con", "Smy"}}
+
 	game := &State{
-		Turn:  Spring,
-		Phase: OrderPhase,
-		Countries: [7]*Country{
-			&Country{Name: "Austria", HomeCenters: []string{"Vie", "Bud", "Tri"}},
-			&Country{Name: "England", HomeCenters: []string{"Lon", "Edi", "Lvp"}},
-			&Country{Name: "France", HomeCenters: []string{"Par", "Mar", "Bre"}},
-			&Country{Name: "Germany", HomeCenters: []string{"Ber", "Mun", "Kie"}},
-			&Country{Name: "Italy", HomeCenters: []string{"Rom", "Ven", "Nap"}},
-			&Country{Name: "Russia", HomeCenters: []string{"Mos", "Sev", "War", "Stp_sc"}},
-			&Country{Name: "Turkey", HomeCenters: []string{"Ank", "Con", "Smy"}},
-		},
-		World: initializeWorld(),
+		Turn:      Spring,
+		Phase:     OrderPhase,
+		Countries: [7]*Country{austria, england, france, germany, italy, russia, turkey},
+		World:     initializeWorld(),
 	}
 
 	for _, c := range game.Countries {
@@ -26,6 +26,35 @@ func InitializeNewGame() (*State, error) {
 			p.OwnedBy = hc
 		}
 	}
+
+	game.World.AddUnit(austria, Army, "Vie")
+	game.World.AddUnit(austria, Army, "Bud")
+	game.World.AddUnit(austria, Fleet, "Tri")
+
+	game.World.AddUnit(england, Fleet, "Lon")
+	game.World.AddUnit(england, Fleet, "Edi")
+	game.World.AddUnit(england, Army, "Lvp")
+
+	game.World.AddUnit(france, Army, "Par")
+	game.World.AddUnit(france, Army, "Mas")
+	game.World.AddUnit(france, Fleet, "Bre")
+
+	game.World.AddUnit(germany, Army, "Ber")
+	game.World.AddUnit(germany, Army, "Mun")
+	game.World.AddUnit(germany, Fleet, "Kie")
+
+	game.World.AddUnit(italy, Army, "Rom")
+	game.World.AddUnit(italy, Army, "Ven")
+	game.World.AddUnit(italy, Fleet, "Nap")
+
+	game.World.AddUnit(russia, Army, "Mos")
+	game.World.AddUnit(russia, Fleet, "Sev")
+	game.World.AddUnit(russia, Army, "War")
+	game.World.AddUnit(russia, Fleet, "Stp_sc")
+
+	game.World.AddUnit(turkey, Fleet, "Ank")
+	game.World.AddUnit(turkey, Army, "Con")
+	game.World.AddUnit(turkey, Army, "Smy")
 
 	return game, nil
 }
@@ -196,35 +225,6 @@ func initializeWorld() *Graph {
 	g.AddEdges("SKA", []string{"BAL", "Den", "NTH", "Nwy", "Swe"})
 	g.AddEdges("TYS", []string{"ION", "LYO", "Nap", "Rom", "Tun", "Tus", "WES"})
 	g.AddEdges("WES", []string{"LYO", "MAO", "Naf", "TYS", "Tun", "Spa_sc"})
-
-	g.AddUnit("Austria", Army, "Vie")
-	g.AddUnit("Austria", Army, "Bud")
-	g.AddUnit("Austria", Fleet, "Tri")
-
-	g.AddUnit("England", Fleet, "Lon")
-	g.AddUnit("England", Fleet, "Edi")
-	g.AddUnit("England", Army, "Lvp")
-
-	g.AddUnit("France", Army, "Par")
-	g.AddUnit("France", Army, "Mas")
-	g.AddUnit("France", Fleet, "Bre")
-
-	g.AddUnit("Germany", Army, "Ber")
-	g.AddUnit("Germany", Army, "Mun")
-	g.AddUnit("Germany", Fleet, "Kie")
-
-	g.AddUnit("Italy", Army, "Rom")
-	g.AddUnit("Italy", Army, "Ven")
-	g.AddUnit("Italy", Fleet, "Nap")
-
-	g.AddUnit("Russia", Army, "Mos")
-	g.AddUnit("Russia", Fleet, "Sev")
-	g.AddUnit("Russia", Army, "War")
-	g.AddUnit("Russia", Fleet, "Stp_sc")
-
-	g.AddUnit("Turkey", Fleet, "Ank")
-	g.AddUnit("Turkey", Army, "Con")
-	g.AddUnit("Turkey", Army, "Smy")
 
 	return g
 }

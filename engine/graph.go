@@ -107,7 +107,7 @@ func (g *Graph) AddEdges(srcKey string, destKeys []string) {
 	}
 }
 
-func (g *Graph) GetNeighbors(srcKey string) []string {
+func (g *Graph) GetNeighborKeys(srcKey string) []string {
 	result := []string{}
 
 	for _, edge := range g.Provinces[srcKey].Edges {
@@ -115,4 +115,35 @@ func (g *Graph) GetNeighbors(srcKey string) []string {
 	}
 
 	return result
+}
+
+func (g *Graph) GetNeighbors(src *Province) ([]*Province, error) {
+	if src == nil {
+		return nil, errors.New("input is nil")
+	}
+
+	result := []*Province{}
+
+	for _, edge := range g.Provinces[src.Key].Edges {
+		result = append(result, edge.Province)
+	}
+
+	return result, nil
+}
+
+func (g *Graph) GetNeighborsWithUnits(src *Province) ([]*Province, error) {
+	if src == nil {
+		return nil, errors.New("input is nil")
+	}
+
+	result := []*Province{}
+
+	for _, edge := range g.Provinces[src.Key].Edges {
+		p := edge.Province
+		if p.Unit != nil {
+			result = append(result, p)
+		}
+	}
+
+	return result, nil
 }

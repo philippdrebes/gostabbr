@@ -89,7 +89,7 @@ func TestGetNeighbors(t *testing.T) {
 	g.AddEdge("GHI", "JKL")
 	g.AddEdge("GHI", "DEF")
 
-	neighbors := g.GetNeighbors("GHI")
+	neighbors := g.GetNeighborKeys("GHI")
 	assert.Equal(2, len(neighbors))
 }
 

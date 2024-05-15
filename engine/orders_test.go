@@ -6,14 +6,16 @@ import (
 )
 
 func TestHoldOrder_String(t *testing.T) {
-	unit := &Unit{Country: "USA", Type: Army}
+	usa := &Country{Name: "USA"}
+	unit := &Unit{Country: usa, Type: Army}
 	province := &Province{Key: "NY", Name: "New York", Unit: unit}
 	holdOrder := HoldOrder{Position: province}
 	assert.Equal(t, "A NY H", holdOrder.String(), "HoldOrder string should match expected format.")
 }
 
 func TestMoveOrder_String(t *testing.T) {
-	unit := &Unit{Country: "USA", Type: Fleet}
+	usa := &Country{Name: "USA"}
+	unit := &Unit{Country: usa, Type: Fleet}
 	position := &Province{Unit: unit, Key: "NY", Name: "New York"}
 	dest := &Province{Key: "CA", Name: "California"}
 	moveOrder := MoveOrder{Position: position, Dest: dest}
@@ -21,7 +23,8 @@ func TestMoveOrder_String(t *testing.T) {
 }
 
 func TestSupportOrder_String(t *testing.T) {
-	unit := &Unit{Country: "USA", Type: Army}
+	usa := &Country{Name: "USA"}
+	unit := &Unit{Country: usa, Type: Army}
 	position := &Province{Unit: unit, Key: "NY", Name: "New York"}
 	src := &Province{Key: "WA", Name: "Washington"}
 	dest := &Province{Key: "CA", Name: "California"}
@@ -32,7 +35,8 @@ func TestSupportOrder_String(t *testing.T) {
 }
 
 func TestConvoyOrder_String(t *testing.T) {
-	unit := &Unit{Country: "USA", Type: Fleet}
+	usa := &Country{Name: "USA"}
+	unit := &Unit{Country: usa, Type: Fleet}
 	position := &Province{Unit: unit, Key: "NY", Name: "New York"}
 	src := &Province{Key: "WA", Name: "Washington"}
 	dest := &Province{Key: "CA", Name: "California"}

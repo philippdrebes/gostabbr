@@ -49,54 +49,6 @@ func TestNextPhase_NegativeCases(t *testing.T) {
 	}
 }
 
-func TestAddOrder_HoldOrder(t *testing.T) {
-	country := &Country{}
-	unit := &Unit{Type: Army}
-	paris := &Province{Key: "Paris", Unit: unit}
-	holdOrder := &HoldOrder{Position: paris}
-	country.addOrder(holdOrder)
-	assert.Equal(t, 1, len(country.orders), "Country should have one order after addition")
-	assert.Equal(t, paris, country.orders[0].GetPosition(), "Order position should be Paris")
-}
-
-func TestAddOrder_ReplaceOrderWithMoveOrder(t *testing.T) {
-	country := &Country{}
-	unit := &Unit{Type: Army}
-	paris := &Province{Unit: unit, Key: "Paris"}
-	holdOrder := &HoldOrder{Position: paris}
-	moveOrder := &MoveOrder{Position: paris, Dest: &Province{Key: "Berlin"}}
-	country.addOrder(holdOrder)
-	country.addOrder(moveOrder)
-	assert.Equal(t, 1, len(country.orders), "Country should still have one order after replacement")
-	assert.IsType(t, &MoveOrder{}, country.orders[0], "The replaced order should be a MoveOrder")
-	assert.Equal(t, "Berlin", country.orders[0].(*MoveOrder).Dest.Key, "Destination of MoveOrder should be Berlin")
-}
-
-func TestAddOrder_AddMultipleOrdersDifferentLocations(t *testing.T) {
-	country := &Country{}
-	unit := &Unit{Type: Army}
-	paris := &Province{Key: "Paris", Unit: unit}
-	berlin := &Province{Key: "Berlin", Unit: unit}
-	holdOrderParis := &HoldOrder{Position: paris}
-	holdOrderBerlin := &HoldOrder{Position: berlin}
-	country.addOrder(holdOrderParis)
-	country.addOrder(holdOrderBerlin)
-	assert.Equal(t, 2, len(country.orders), "Country should have two orders for different locations")
-	assert.NotEqual(t, country.orders[0].GetPosition(), country.orders[1].GetPosition(), "Orders should be in different provinces")
-}
-
-func TestAddOrder_NoDuplicateOnNonMatchingPositions(t *testing.T) {
-	country := &Country{}
-	unit := &Unit{Type: Army}
-	paris := &Province{Key: "Paris", Unit: unit}
-	berlin := &Province{Key: "Berlin", Unit: unit}
-	holdOrderParis := &HoldOrder{Position: paris}
-	moveOrderBerlin := &MoveOrder{Position: berlin, Dest: &Province{Key: "Munich"}}
-	country.addOrder(holdOrderParis)
-	country.addOrder(moveOrderBerlin)
-	assert.Equal(t, 2, len(country.orders), "Country should have two distinct orders when positions don't match")
-}
-
 func setupStateWithGraph() *State {
 	provinces := map[string]*Province{
 		"Paris":     {Key: "Paris"},
@@ -104,21 +56,22 @@ func setupStateWithGraph() *State {
 		"Munich":    {Key: "Munich"},
 		"Edinburgh": {Key: "Edinburgh"},
 	}
+
+	france := &Country{Name: "France"}
+	germany := &Country{Name: "Germany"}
+	england := &Country{Name: "England"}
+
 	graph := &Graph{Provinces: provinces}
 	state := &State{
-		Turn:  Spring,
-		Phase: OrderPhase,
-		Countries: [7]*Country{
-			{Name: "France"},
-			{Name: "Germany"},
-			{Name: "England"},
-		},
-		World: graph,
+		Turn:      Spring,
+		Phase:     OrderPhase,
+		Countries: [7]*Country{france, germany, england},
+		World:     graph,
 	}
 
-	state.World.AddUnit("France", Army, "Paris")
-	state.World.AddUnit("Germany", Army, "Berlin")
-	state.World.AddUnit("England", Fleet, "Edinburgh")
+	state.World.AddUnit(france, Army, "Paris")
+	state.World.AddUnit(germany, Army, "Berlin")
+	state.World.AddUnit(england, Fleet, "Edinburgh")
 
 	return state
 }

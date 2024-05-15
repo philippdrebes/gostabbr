@@ -150,10 +150,17 @@ func (s *State) addOrder(country *Country, newOrder Order) error {
 		country.orders = []Order{}
 	}
 
+	position := newOrder.GetPosition()
+	if position.Unit.Country != country {
+		return errors.New(fmt.Sprintf("%s cannot add order to unit of %s", country.Name, position.Unit.Country.Name))
+	}
+
+	position.Unit.Order = &newOrder
+
 	for index, existing := range country.orders {
-		if newOrder.GetPosition().Key == existing.GetPosition().Key {
+		if position.Key == existing.GetPosition().Key {
 			country.orders[index] = newOrder
-			return nil // todo: do not return
+			return nil
 		}
 	}
 
@@ -224,22 +231,25 @@ func (s *State) Adjudicate() error {
 }
 
 func calculateStrength(order Order, world *Graph) int {
-	var p *Province
+	var province *Province
 
 	if _, ok := order.(MoveOrder); ok {
 		// if move: get neighbors of destination and check for supporting orders
-		p = order.GetDestination()
+		province = order.GetDestination()
 	} else {
 		// if hold, support or convoy: get neighbors of source and check for supporting orders
-		p = order.GetSource()
+		province = order.GetSource()
 	}
 
-	neighbors, err := world.GetNeighborsWithUnits(p)
+	neighbors, err := world.GetNeighborsWithUnits(province)
 	if err != nil {
 		return 1
 	}
 
 	fmt.Printf("Found %d neighbors with units on them", len(neighbors))
+	// for _, n := range neighbors {
+	// 	n.Unit.Order
+	// }
 
 	return 1
 }

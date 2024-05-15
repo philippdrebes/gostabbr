@@ -37,6 +37,7 @@ type Edge struct {
 }
 
 type Unit struct {
+	Order   *Order
 	Country *Country
 	Type    UnitType
 }
@@ -64,23 +65,23 @@ func (g *Graph) AddEdge(srcKey, destKey string) {
 	g.Provinces[srcKey].Edges[destKey] = &Edge{Province: g.Provinces[destKey]}
 }
 
-func (g *Graph) AddUnit(country *Country, unitType UnitType, province string) error {
+func (g *Graph) AddUnit(country *Country, unitType UnitType, province string) (*Unit, error) {
 	if _, ok := g.Provinces[province]; !ok {
-		return errors.New("Province not found")
+		return nil, errors.New("Province not found")
 	}
 
 	if g.Provinces[province].Unit != nil {
-		return errors.New("Province already occupied")
+		return nil, errors.New("Province already occupied")
 	}
 
-	unit := Unit{
+	unit := &Unit{
 		Country: country,
 		Type:    unitType,
 	}
 
-	g.Provinces[province].Unit = &unit
+	g.Provinces[province].Unit = unit
 
-	return nil
+	return unit, nil
 }
 
 func (g *Graph) GetUnits(country string) []*Unit {

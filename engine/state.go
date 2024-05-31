@@ -231,15 +231,8 @@ func (s *State) Adjudicate() error {
 }
 
 func calculateStrength(order Order, world *Graph) int {
-	var province *Province
 
-	if _, ok := order.(MoveOrder); ok {
-		// if move: get neighbors of destination and check for supporting orders
-		province = order.GetDestination()
-	} else {
-		// if hold, support or convoy: get neighbors of source and check for supporting orders
-		province = order.GetSource()
-	}
+	province := order.GetDestination()
 
 	neighbors, err := world.GetNeighborsWithUnits(province)
 	if err != nil {

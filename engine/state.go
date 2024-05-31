@@ -31,7 +31,7 @@ type Country struct {
 type State struct {
 	Turn      Turn
 	Phase     Phase
-	Countries [7]*Country
+	Countries []*Country
 	World     *Graph
 }
 
@@ -155,7 +155,7 @@ func (s *State) addOrder(country *Country, newOrder Order) error {
 		return errors.New(fmt.Sprintf("%s cannot add order to unit of %s", country.Name, position.Unit.Country.Name))
 	}
 
-	position.Unit.Order = &newOrder
+	position.Unit.Order = newOrder
 
 	for index, existing := range country.orders {
 		if position.Key == existing.GetPosition().Key {
@@ -246,10 +246,20 @@ func calculateStrength(order Order, world *Graph) int {
 		return 1
 	}
 
-	fmt.Printf("Found %d neighbors with units on them", len(neighbors))
-	// for _, n := range neighbors {
-	// 	n.Unit.Order
-	// }
+	log.Printf("Found %d neighbors with units on them", len(neighbors))
 
-	return 1
+	strength := 1
+	for _, n := range neighbors {
+		if support, ok := n.Unit.Order.(*SupportOrder); ok {
+			log.Printf("Found support order from %s (%s)", support.GetPosition().Name, n.Unit.Order)
+
+			if support.GetSource() == order.GetSource() &&
+				support.GetDestination() == order.GetDestination() {
+				strength++
+			}
+
+		}
+	}
+
+	return strength
 }

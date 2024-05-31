@@ -6,6 +6,57 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func InitializeTestGame() (*State, error) {
+	austria := &Country{Name: "Austria", HomeCenters: []string{"Vie", "Bud"}}
+	italy := &Country{Name: "Italy", HomeCenters: []string{"Rom", "Ven"}}
+
+	game := &State{
+		Turn:      Spring,
+		Phase:     OrderPhase,
+		Countries: []*Country{austria, italy},
+		World:     initializeTestWorld(),
+	}
+
+	for _, c := range game.Countries {
+		for _, hc := range c.HomeCenters {
+			p, err := game.World.GetProvince(hc)
+			if err != nil {
+				return nil, err
+			}
+
+			p.OwnedBy = hc
+		}
+	}
+
+	game.World.AddUnit(austria, Army, "Vie")
+	game.World.AddUnit(austria, Army, "Bud")
+
+	game.World.AddUnit(italy, Army, "Rom")
+	game.World.AddUnit(italy, Army, "Ven")
+
+	return game, nil
+}
+
+func initializeTestWorld() *Graph {
+	g := &Graph{Provinces: map[string]*Province{}}
+
+	g.AddProvince("Vie", "Vienna", LandTile, true)
+	g.AddProvince("Bud", "Budapest", LandTile, true)
+	g.AddProvince("Tri", "Trieste", LandTile, false)
+	g.AddProvince("Ven", "Venice", LandTile, true)
+	g.AddProvince("Rom", "Rome", LandTile, true)
+	g.AddProvince("Tyr", "Tyrolia", LandTile, false)
+
+	g.AddEdges("Vie", []string{"Bud", "Tri", "Tyr"})
+	g.AddEdges("Bud", []string{"Vie", "Tri"})
+	g.AddEdges("Tri", []string{"Vie", "Bud", "Tyr", "Ven"})
+	g.AddEdges("Ven", []string{"Tri", "Tyr", "Rom"})
+	g.AddEdges("Rom", []string{"Ven"})
+	g.AddEdges("Tyr", []string{"Vie", "Tri", "Ven"})
+
+	return g
+}
+
 func TestNextPhase(t *testing.T) {
 	tests := []struct {
 		name          string
@@ -65,7 +116,7 @@ func setupStateWithGraph() *State {
 	state := &State{
 		Turn:      Spring,
 		Phase:     OrderPhase,
-		Countries: [7]*Country{france, germany, england},
+		Countries: []*Country{france, germany, england},
 		World:     graph,
 	}
 
@@ -122,7 +173,8 @@ func TestAddOrder_InvalidDestination(t *testing.T) {
 	assert.Error(t, err, "Should return an error when adding a move order with a nonexistent destination")
 }
 
-func TestAdjudicate_WithOrders(t *testing.T) {
+func TestAdjudicate_HoldAndMoveOrders(t *testing.T) {
+	// Hold order and move orders do not conflict
 	s := setupStateWithGraph()
 
 	err := s.AddHoldOrder("France", "Paris")
@@ -142,4 +194,31 @@ func TestAdjudicate_WithOrders(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Nil(t, ber.Unit)
 	assert.NotNil(t, mun.Unit)
+}
+func TestCalculateStrength_HoldOrder(t *testing.T) {
+	state, err := InitializeTestGame()
+	assert.NoError(t, err)
+
+	state.AddHoldOrder("Austria", "Vie")
+	country, err := state.GetCountry("Austria")
+	assert.NoError(t, err)
+
+	assert.Len(t, country.orders, 1)
+	strength := calculateStrength(country.orders[0], state.World)
+	assert.Equal(t, 1, strength)
+}
+
+func TestCalculateStrength_HoldOrderWithSupport(t *testing.T) {
+	state, err := InitializeTestGame()
+	assert.NoError(t, err)
+
+	state.AddHoldOrder("Austria", "Vie")
+	state.AddSupportOrder("Austria", "Bud", "Vie", "Vie")
+
+	country, err := state.GetCountry("Austria")
+	assert.NoError(t, err)
+
+	assert.Len(t, country.orders, 2)
+	strength := calculateStrength(country.orders[0], state.World)
+	assert.Equal(t, 2, strength)
 }

@@ -37,7 +37,7 @@ type Edge struct {
 }
 
 type Unit struct {
-	Order   *Order
+	Order   Order
 	Country *Country
 	Type    UnitType
 }

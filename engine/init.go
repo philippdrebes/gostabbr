@@ -12,7 +12,7 @@ func InitializeNewGame() (*State, error) {
 	game := &State{
 		Turn:      Spring,
 		Phase:     OrderPhase,
-		Countries: [7]*Country{austria, england, france, germany, italy, russia, turkey},
+		Countries: []*Country{austria, england, france, germany, italy, russia, turkey},
 		World:     initializeWorld(),
 	}
 

@@ -222,3 +222,70 @@ func TestCalculateStrength_HoldOrderWithSupport(t *testing.T) {
 	strength := calculateStrength(country.orders[0], state.World)
 	assert.Equal(t, 2, strength)
 }
+
+func TestCalculateStrength_MoveOrder(t *testing.T) {
+	state, err := InitializeTestGame()
+	assert.NoError(t, err)
+
+	state.AddMoveOrder("Austria", "Vie", "Tri")
+	country, err := state.GetCountry("Austria")
+	assert.NoError(t, err)
+
+	assert.Len(t, country.orders, 1)
+	strength := calculateStrength(country.orders[0], state.World)
+	assert.Equal(t, 1, strength)
+}
+
+func TestCalculateStrength_MoveOrderWithSupport(t *testing.T) {
+	state, err := InitializeTestGame()
+	assert.NoError(t, err)
+
+	state.AddMoveOrder("Austria", "Vie", "Tri")
+	state.AddSupportOrder("Austria", "Bud", "Vie", "Tri")
+	country, err := state.GetCountry("Austria")
+	assert.NoError(t, err)
+
+	assert.Len(t, country.orders, 2)
+	strength := calculateStrength(country.orders[0], state.World)
+	assert.Equal(t, 2, strength)
+}
+
+func TestCalculateStrength_MoveOrderWithSupportFromOther(t *testing.T) {
+	state, err := InitializeTestGame()
+	assert.NoError(t, err)
+
+	state.AddMoveOrder("Austria", "Vie", "Tri")
+	state.AddSupportOrder("Austria", "Bud", "Vie", "Tri")
+	state.AddSupportOrder("Italy", "Ven", "Vie", "Tri")
+
+	austria, err := state.GetCountry("Austria")
+	assert.NoError(t, err)
+
+	italy, err := state.GetCountry("Italy")
+	assert.NoError(t, err)
+
+	assert.Len(t, austria.orders, 2)
+	assert.Len(t, italy.orders, 1)
+	strength := calculateStrength(austria.orders[0], state.World)
+	assert.Equal(t, 3, strength)
+}
+
+func TestCalculateStrength_MoveOrderWithoutSupportFromOther(t *testing.T) {
+	state, err := InitializeTestGame()
+	assert.NoError(t, err)
+
+	state.AddMoveOrder("Austria", "Vie", "Tri")
+	state.AddSupportOrder("Austria", "Bud", "Vie", "Tri")
+	state.AddSupportOrder("Italy", "Ven", "Vie", "Bud")
+
+	austria, err := state.GetCountry("Austria")
+	assert.NoError(t, err)
+
+	italy, err := state.GetCountry("Italy")
+	assert.NoError(t, err)
+
+	assert.Len(t, austria.orders, 2)
+	assert.Len(t, italy.orders, 1)
+	strength := calculateStrength(austria.orders[0], state.World)
+	assert.Equal(t, 2, strength)
+}

@@ -18,7 +18,7 @@ func TestMoveOrder_String(t *testing.T) {
 	unit := &Unit{Country: usa, Type: Fleet}
 	position := &Province{Unit: unit, Key: "NY", Name: "New York"}
 	dest := &Province{Key: "CA", Name: "California"}
-	moveOrder := MoveOrder{Position: position, Dest: dest}
+	moveOrder := MoveOrder{Position: position, Destination: dest}
 	assert.Equal(t, "F NY - CA", moveOrder.String(), "MoveOrder string should match expected format.")
 }
 
@@ -28,8 +28,8 @@ func TestSupportOrder_String(t *testing.T) {
 	position := &Province{Unit: unit, Key: "NY", Name: "New York"}
 	src := &Province{Key: "WA", Name: "Washington"}
 	dest := &Province{Key: "CA", Name: "California"}
-	supportOrderSame := SupportOrder{Position: position, Src: src, Dest: src}
-	supportOrderDiff := SupportOrder{Position: position, Src: src, Dest: dest}
+	supportOrderSame := SupportOrder{Position: position, Source: src, Destination: src}
+	supportOrderDiff := SupportOrder{Position: position, Source: src, Destination: dest}
 	assert.Equal(t, "A NY S WA", supportOrderSame.String(), "SupportOrder string (same src and dest) should match expected format.")
 	assert.Equal(t, "A NY S WA - CA", supportOrderDiff.String(), "SupportOrder string (different src and dest) should match expected format.")
 }
@@ -40,7 +40,7 @@ func TestConvoyOrder_String(t *testing.T) {
 	position := &Province{Unit: unit, Key: "NY", Name: "New York"}
 	src := &Province{Key: "WA", Name: "Washington"}
 	dest := &Province{Key: "CA", Name: "California"}
-	convoyOrder := ConvoyOrder{Position: position, Src: src, Dest: dest}
+	convoyOrder := ConvoyOrder{Position: position, Source: src, Destination: dest}
 	assert.Equal(t, "F NY C WA - CA", convoyOrder.String(), "ConvoyOrder string should match expected format.")
 }
 

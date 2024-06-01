@@ -9,11 +9,12 @@ import (
 func InitializeTestGame() (*State, error) {
 	austria := &Country{Name: "Austria", HomeCenters: []string{"Vie", "Bud"}}
 	italy := &Country{Name: "Italy", HomeCenters: []string{"Rom", "Ven"}}
+	turkey := &Country{Name: "Turkey", HomeCenters: []string{}}
 
 	game := &State{
 		Turn:      Spring,
 		Phase:     OrderPhase,
-		Countries: []*Country{austria, italy},
+		Countries: []*Country{austria, italy, turkey},
 		World:     initializeTestWorld(),
 	}
 
@@ -34,6 +35,8 @@ func InitializeTestGame() (*State, error) {
 	game.World.AddUnit(italy, Army, "Rom")
 	game.World.AddUnit(italy, Army, "Ven")
 
+	game.World.AddUnit(turkey, Fleet, "ION")
+
 	return game, nil
 }
 
@@ -46,13 +49,17 @@ func initializeTestWorld() *Graph {
 	g.AddProvince("Ven", "Venice", LandTile, true)
 	g.AddProvince("Rom", "Rome", LandTile, true)
 	g.AddProvince("Tyr", "Tyrolia", LandTile, false)
+	g.AddProvince("ADR", "Adriatic Sea", WaterTile, false)
+	g.AddProvince("ION", "Ionian Sea", WaterTile, false)
 
 	g.AddEdges("Vie", []string{"Bud", "Tri", "Tyr"})
 	g.AddEdges("Bud", []string{"Vie", "Tri"})
-	g.AddEdges("Tri", []string{"Vie", "Bud", "Tyr", "Ven"})
-	g.AddEdges("Ven", []string{"Tri", "Tyr", "Rom"})
+	g.AddEdges("Tri", []string{"Vie", "Bud", "Tyr", "Ven", "ADR"})
+	g.AddEdges("Ven", []string{"Tri", "Tyr", "Rom", "ADR"})
 	g.AddEdges("Rom", []string{"Ven"})
 	g.AddEdges("Tyr", []string{"Vie", "Tri", "Ven"})
+	g.AddEdges("ADR", []string{"Tri", "Ven"})
+	g.AddEdges("ION", []string{"ADR"})
 
 	return g
 }
@@ -195,6 +202,7 @@ func TestAdjudicate_HoldAndMoveOrders(t *testing.T) {
 	assert.Nil(t, ber.Unit)
 	assert.NotNil(t, mun.Unit)
 }
+
 func TestCalculateStrength_HoldOrder(t *testing.T) {
 	state, err := InitializeTestGame()
 	assert.NoError(t, err)
@@ -288,4 +296,110 @@ func TestCalculateStrength_MoveOrderWithoutSupportFromOther(t *testing.T) {
 	assert.Len(t, italy.orders, 1)
 	strength := calculateStrength(austria.orders[0], state.World)
 	assert.Equal(t, 2, strength)
+}
+
+func TestCalculateStrength_ArmyCannotSupportWaterMove(t *testing.T) {
+	state, err := InitializeTestGame()
+	assert.NoError(t, err)
+
+	state.AddMoveOrder("Turkey", "ION", "ADR")
+	state.AddSupportOrder("Italy", "Ven", "ION", "ADR")
+
+	turkey, err := state.GetCountry("Turkey")
+	assert.NoError(t, err)
+
+	italy, err := state.GetCountry("Italy")
+	assert.NoError(t, err)
+
+	assert.Len(t, turkey.orders, 1)
+	assert.Len(t, italy.orders, 1)
+	strength := calculateStrength(turkey.orders[0], state.World)
+	assert.Equal(t, 1, strength)
+}
+
+func TestIsValidSupportOrder(t *testing.T) {
+	paris := &Province{Key: "Paris", Type: LandTile}
+	london := &Province{Key: "London", Type: LandTile}
+	northSea := &Province{Key: "North Sea", Type: WaterTile}
+
+	tests := []struct {
+		name        string
+		order       Order
+		support     Order
+		supportUnit Unit
+		expected    bool
+	}{
+		{
+			name: "Valid Army Support on Land",
+			order: MoveOrder{
+				Position:    paris,
+				Destination: london,
+			},
+			support: SupportOrder{
+				Source:      paris,
+				Destination: london,
+			},
+			supportUnit: Unit{Type: Army},
+			expected:    true,
+		},
+		{
+			name: "Invalid Army Support to Water",
+			order: MoveOrder{
+				Position:    paris,
+				Destination: northSea,
+			},
+			support: SupportOrder{
+				Source:      paris,
+				Destination: northSea,
+			},
+			supportUnit: Unit{Type: Army},
+			expected:    false,
+		},
+		{
+			name: "Valid Fleet Support on Water",
+			order: MoveOrder{
+				Position:    paris,
+				Destination: northSea,
+			},
+			support: SupportOrder{
+				Source:      paris,
+				Destination: northSea,
+			},
+			supportUnit: Unit{Type: Fleet},
+			expected:    true,
+		},
+		{
+			name: "Valid Fleet Support to Land",
+			order: MoveOrder{
+				Position:    paris,
+				Destination: london,
+			},
+			support: SupportOrder{
+				Source:      paris,
+				Destination: london,
+			},
+			supportUnit: Unit{Type: Fleet},
+			expected:    true,
+		},
+		{
+			name: "Invalid Support Different Destination",
+			order: MoveOrder{
+				Position:    paris,
+				Destination: london,
+			},
+			support: SupportOrder{
+				Source:      paris,
+				Destination: northSea,
+			},
+			supportUnit: Unit{Type: Army},
+			expected:    false,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			result := isValidSupportOrder(tc.order, tc.support, tc.supportUnit)
+			assert.Equal(t, tc.expected, result, "Test case: %s", tc.name)
+		})
+	}
 }

@@ -17,20 +17,20 @@ type HoldOrder struct {
 }
 
 type MoveOrder struct {
-	Position *Province
-	Dest     *Province
+	Position    *Province
+	Destination *Province
 }
 
 type SupportOrder struct {
-	Position *Province
-	Src      *Province
-	Dest     *Province
+	Position    *Province
+	Source      *Province
+	Destination *Province
 }
 
 type ConvoyOrder struct {
-	Position *Province
-	Src      *Province
-	Dest     *Province
+	Position    *Province
+	Source      *Province
+	Destination *Province
 }
 
 func (h HoldOrder) String() string {
@@ -50,7 +50,7 @@ func (h HoldOrder) GetDestination() *Province {
 }
 
 func (m MoveOrder) String() string {
-	return fmt.Sprintf("%s %s - %s", m.Position.Unit.Type, m.Position.Key, m.Dest.Key)
+	return fmt.Sprintf("%s %s - %s", m.Position.Unit.Type, m.Position.Key, m.Destination.Key)
 }
 
 func (m MoveOrder) GetPosition() *Province {
@@ -62,23 +62,23 @@ func (m MoveOrder) GetSource() *Province {
 }
 
 func (m MoveOrder) GetDestination() *Province {
-	return m.Dest
+	return m.Destination
 }
 
 func (m MoveOrder) Move() error {
-	if m.Dest.Unit != nil {
+	if m.Destination.Unit != nil {
 		return errors.New("Destination occupied")
 	}
-	m.Dest.Unit = m.Position.Unit
+	m.Destination.Unit = m.Position.Unit
 	m.Position.Unit = nil
 	return nil
 }
 
 func (s SupportOrder) String() string {
-	if s.Src == s.Dest {
-		return fmt.Sprintf("%s %s S %s", s.Position.Unit.Type, s.Position.Key, s.Src.Key)
+	if s.Source == s.Destination {
+		return fmt.Sprintf("%s %s S %s", s.Position.Unit.Type, s.Position.Key, s.Source.Key)
 	}
-	return fmt.Sprintf("%s %s S %s - %s", s.Position.Unit.Type, s.Position.Key, s.Src.Key, s.Dest.Key)
+	return fmt.Sprintf("%s %s S %s - %s", s.Position.Unit.Type, s.Position.Key, s.Source.Key, s.Destination.Key)
 }
 
 func (s SupportOrder) GetPosition() *Province {
@@ -86,15 +86,15 @@ func (s SupportOrder) GetPosition() *Province {
 }
 
 func (s SupportOrder) GetSource() *Province {
-	return s.Src
+	return s.Source
 }
 
 func (s SupportOrder) GetDestination() *Province {
-	return s.Dest
+	return s.Destination
 }
 
 func (c ConvoyOrder) String() string {
-	return fmt.Sprintf("%s %s C %s - %s", c.Position.Unit.Type, c.Position.Key, c.Src.Key, c.Dest.Key)
+	return fmt.Sprintf("%s %s C %s - %s", c.Position.Unit.Type, c.Position.Key, c.Source.Key, c.Destination.Key)
 }
 
 func (c ConvoyOrder) GetPosition() *Province {
@@ -102,11 +102,11 @@ func (c ConvoyOrder) GetPosition() *Province {
 }
 
 func (c ConvoyOrder) GetSource() *Province {
-	return c.Src
+	return c.Source
 }
 
 func (c ConvoyOrder) GetDestination() *Province {
-	return c.Dest
+	return c.Destination
 }
 
 func (u UnitType) String() string {

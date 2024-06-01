@@ -81,7 +81,7 @@ func (s *State) AddMoveOrder(country, position, destination string) error {
 	if err != nil {
 		return err
 	}
-	err = s.addOrder(c, &MoveOrder{Position: pos, Dest: dest})
+	err = s.addOrder(c, &MoveOrder{Position: pos, Destination: dest})
 	if err != nil {
 		return err
 	}
@@ -109,7 +109,7 @@ func (s *State) AddSupportOrder(country, position, source, destination string) e
 	if err != nil {
 		return err
 	}
-	err = s.addOrder(c, &SupportOrder{Position: pos, Src: src, Dest: dest})
+	err = s.addOrder(c, &SupportOrder{Position: pos, Source: src, Destination: dest})
 	if err != nil {
 		return err
 	}
@@ -137,7 +137,7 @@ func (s *State) AddConvoyOrder(country, position, source, destination string) er
 	if err != nil {
 		return err
 	}
-	err = s.addOrder(c, &ConvoyOrder{Position: pos, Src: src, Dest: dest})
+	err = s.addOrder(c, &ConvoyOrder{Position: pos, Source: src, Destination: dest})
 	if err != nil {
 		return err
 	}
@@ -245,9 +245,7 @@ func calculateStrength(order Order, world *Graph) int {
 	for _, n := range neighbors {
 		if support, ok := n.Unit.Order.(*SupportOrder); ok {
 			log.Printf("Found support order from %s (%s)", support.GetPosition().Name, n.Unit.Order)
-
-			if support.GetSource() == order.GetSource() &&
-				support.GetDestination() == order.GetDestination() {
+			if isValidSupportOrder(order, support, *n.Unit) {
 				strength++
 			}
 
@@ -255,4 +253,14 @@ func calculateStrength(order Order, world *Graph) int {
 	}
 
 	return strength
+}
+
+func isValidSupportOrder(order, support Order, supportUnit Unit) bool {
+	sameSrcAndDest := support.GetSource() == order.GetSource() && support.GetDestination() == order.GetDestination()
+	supportIsArmy := supportUnit.Type == Army
+	supportIsFleet := supportUnit.Type == Fleet
+	destIsLand := order.GetDestination().Type == LandTile
+	// destIsWater := order.GetDestination().Type == WaterTile
+
+	return sameSrcAndDest && (supportIsArmy && destIsLand || supportIsFleet)
 }

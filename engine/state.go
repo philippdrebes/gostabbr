@@ -230,23 +230,37 @@ func (s *State) Adjudicate() error {
 	return nil
 }
 
-func calculateStrength(order Order, world *Graph) int {
+func successfulOrder(order Order, world *Graph) bool {
 
 	province := order.GetDestination()
 
 	neighbors, err := world.GetNeighborsWithUnits(province)
 	if err != nil {
-		return 1
+		return false
 	}
 
 	log.Printf("Found %d neighbors with units on them", len(neighbors))
 
+	strength := calculateStrength(order, neighbors)
+	log.Printf("Strength %d", strength)
+
+	return false
+}
+
+func calculateStrength(order Order, neighbors []*Province) int {
 	strength := 1
 	for _, n := range neighbors {
 		if support, ok := n.Unit.Order.(*SupportOrder); ok {
 			log.Printf("Found support order from %s (%s)", support.GetPosition().Name, n.Unit.Order)
 			if isValidSupportOrder(order, support, *n.Unit) {
 				strength++
+			}
+		}
+
+		if move, ok := n.Unit.Order.(*MoveOrder); ok {
+			log.Printf("Found move order from %s (%s)", move.GetPosition().Name, n.Unit.Order)
+			if isValidSupportOrder(order, move, *n.Unit) {
+				strength--
 			}
 
 		}

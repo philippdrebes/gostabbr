@@ -212,7 +212,9 @@ func TestCalculateStrength_HoldOrder(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Len(t, country.orders, 1)
-	strength := calculateStrength(country.orders[0], state.World)
+	order := country.orders[0]
+	neighbors, err := state.World.GetNeighborsWithUnits(order.GetDestination())
+	strength := calculateStrength(order, neighbors)
 	assert.Equal(t, 1, strength)
 }
 
@@ -227,7 +229,9 @@ func TestCalculateStrength_HoldOrderWithSupport(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Len(t, country.orders, 2)
-	strength := calculateStrength(country.orders[0], state.World)
+	order := country.orders[0]
+	neighbors, err := state.World.GetNeighborsWithUnits(order.GetDestination())
+	strength := calculateStrength(order, neighbors)
 	assert.Equal(t, 2, strength)
 }
 
@@ -240,7 +244,9 @@ func TestCalculateStrength_MoveOrder(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Len(t, country.orders, 1)
-	strength := calculateStrength(country.orders[0], state.World)
+	order := country.orders[0]
+	neighbors, err := state.World.GetNeighborsWithUnits(order.GetDestination())
+	strength := calculateStrength(order, neighbors)
 	assert.Equal(t, 1, strength)
 }
 
@@ -254,7 +260,11 @@ func TestCalculateStrength_MoveOrderWithSupport(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Len(t, country.orders, 2)
-	strength := calculateStrength(country.orders[0], state.World)
+
+	order := country.orders[0]
+	neighbors, err := state.World.GetNeighborsWithUnits(order.GetDestination())
+	strength := calculateStrength(order, neighbors)
+
 	assert.Equal(t, 2, strength)
 }
 
@@ -274,7 +284,11 @@ func TestCalculateStrength_MoveOrderWithSupportFromOther(t *testing.T) {
 
 	assert.Len(t, austria.orders, 2)
 	assert.Len(t, italy.orders, 1)
-	strength := calculateStrength(austria.orders[0], state.World)
+
+	order := austria.orders[0]
+	neighbors, err := state.World.GetNeighborsWithUnits(order.GetDestination())
+	strength := calculateStrength(order, neighbors)
+
 	assert.Equal(t, 3, strength)
 }
 
@@ -294,7 +308,11 @@ func TestCalculateStrength_MoveOrderWithoutSupportFromOther(t *testing.T) {
 
 	assert.Len(t, austria.orders, 2)
 	assert.Len(t, italy.orders, 1)
-	strength := calculateStrength(austria.orders[0], state.World)
+
+	order := austria.orders[0]
+	neighbors, err := state.World.GetNeighborsWithUnits(order.GetDestination())
+	strength := calculateStrength(order, neighbors)
+
 	assert.Equal(t, 2, strength)
 }
 
@@ -313,7 +331,11 @@ func TestCalculateStrength_ArmyCannotSupportWaterMove(t *testing.T) {
 
 	assert.Len(t, turkey.orders, 1)
 	assert.Len(t, italy.orders, 1)
-	strength := calculateStrength(turkey.orders[0], state.World)
+
+	order := turkey.orders[0]
+	neighbors, err := state.World.GetNeighborsWithUnits(order.GetDestination())
+	strength := calculateStrength(order, neighbors)
+
 	assert.Equal(t, 1, strength)
 }
 
@@ -403,3 +425,23 @@ func TestIsValidSupportOrder(t *testing.T) {
 		})
 	}
 }
+
+// func TestCalculateStrength_MoveOrderWithDisturbedSupport(t *testing.T) {
+// 	state, err := InitializeTestGame()
+// 	assert.NoError(t, err)
+//
+// 	state.AddMoveOrder("Austria", "Vie", "Tri")
+// 	state.AddSupportOrder("Austria", "Bud", "Vie", "Tri")
+// 	state.AddSupportOrder("Italy", "Ven", "Vie", "Tri")
+//
+// 	austria, err := state.GetCountry("Austria")
+// 	assert.NoError(t, err)
+//
+// 	italy, err := state.GetCountry("Italy")
+// 	assert.NoError(t, err)
+//
+// 	assert.Len(t, austria.orders, 2)
+// 	assert.Len(t, italy.orders, 1)
+// 	strength := calculateStrength(austria.orders[0], state.World)
+// 	assert.Equal(t, 1, strength)
+// }
